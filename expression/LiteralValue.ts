@@ -1,10 +1,10 @@
 import { Expression } from "./Expression";
 
-export class LiteralValue<T> extends Expression<T, number> {
-  constructor(private _value: number) {
+export class LiteralValue<T,R=number> extends Expression<T, R> {
+  constructor(private _value: R) {
     super();
   }
-  execute(obj: T): number {
+  execute(obj: T): R {
     return this._value;
   }
 }

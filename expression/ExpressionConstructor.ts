@@ -1,37 +1,37 @@
-import { LiteralValue } from "./expression/LiteralValue";
-import { Expression } from "./expression/Expression";
-import { FieldReference } from "./expression/FieldReference";
-import { BinaryOperation } from "./expression/BinaryOperation";
-import { ConditionalExpression } from "./expression/ConditionalExpression";
+import { LiteralValue } from "./LiteralValue";
+import { Expression } from "./Expression";
+import { FieldReference } from "./FieldReference";
+import { BinaryOperation } from "./BinaryOperation";
+import { ConditionalExpression } from "./ConditionalExpression";
 
 export class ExpressionConstructor {
-  literalValue<T>(value: number): Expression<T, number> {
-    return new LiteralValue<T>(value);
+  static literalValue<T,R=number>(value: R): Expression<T, R> {
+    return new LiteralValue<T,R>(value);
   }
-  fieldReference<T extends { [key: string]: any }, R>(
+  static fieldReference<T extends { [key: string]: any }, R>(
     fieldName: string
   ): Expression<T, R> {
     return new FieldReference<T, R>(fieldName);
   }
-  addition<T>(
+  static addition<T>(
     left: Expression<T, number>,
     right: Expression<T, number>
   ): Expression<T, number> {
     return new BinaryOperation<T, number>(left, right, (a, b) => a + b);
   }
-  substration<T>(
+  static substration<T>(
     left: Expression<T, number>,
     right: Expression<T, number>
   ): Expression<T, number> {
     return new BinaryOperation<T, number>(left, right, (a, b) => a - b);
   }
-  multiplication<T>(
+  static multiplication<T>(
     left: Expression<T, number>,
     right: Expression<T, number>
   ): Expression<T, number> {
     return new BinaryOperation<T, number>(left, right, (a, b) => a * b);
   }
-  division<T>(
+  static division<T>(
     left: Expression<T, number>,
     right: Expression<T, number>
   ): Expression<T, number> {
@@ -40,14 +40,14 @@ export class ExpressionConstructor {
       return a / b;
     });
   }
-  condition<T, R>(
+  static condition<T, R>(
     condition: Expression<T, number>,
     isTrue: Expression<T, R>,
     isFalse: Expression<T, R>
   ): Expression<T, R> {
     return new ConditionalExpression(condition, isTrue, isFalse);
   }
-  equality<T, R>(
+  static equality<T, R>(
     left: Expression<T, R>,
     right: Expression<T, R>
   ): Expression<T, number> {
@@ -56,7 +56,7 @@ export class ExpressionConstructor {
     );
   }
 
-  superior<T, R>(
+  static superior<T, R>(
     left: Expression<T, R>,
     right: Expression<T, R>
   ): Expression<T, number> {
@@ -64,7 +64,7 @@ export class ExpressionConstructor {
       Number(a > b)
     );
   }
-  inferior<T, R>(
+  static inferior<T, R>(
     left: Expression<T, R>,
     right: Expression<T, R>
   ): Expression<T, number> {
@@ -72,7 +72,7 @@ export class ExpressionConstructor {
       Number(a < b)
     );
   }
-  different<T, R>(
+  static different<T, R>(
     left: Expression<T, R>,
     right: Expression<T, R>
   ): Expression<T, number> {
@@ -80,7 +80,7 @@ export class ExpressionConstructor {
       Number(a != b)
     );
   }
-  or<T, R>(
+  static or<T, R>(
     left: Expression<T, R>,
     right: Expression<T, R>
   ): Expression<T, number> {
@@ -88,7 +88,7 @@ export class ExpressionConstructor {
       Number(a || b)
     );
   }
-  and<T, R>(
+  static and<T, R>(
     left: Expression<T, R>,
     right: Expression<T, R>
   ): Expression<T, number> {
