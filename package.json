@@ -1,0 +1,22 @@
+{
+  "name": "ruleinterpreter",
+  "version": "1.0.0",
+  "description": "\"Le Ruleinterpretor est un module du projet nutrixnap charger de gerer l'interpretation des regles entrer par le nutritionniste\"",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rule",
+    "interpretor",
+    "nutrixnap",
+    "nutriwell",
+    "nutrition"
+  ],
+  "author": "nXhermane",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "typescript": "^5.5.4"
+  }
+}
