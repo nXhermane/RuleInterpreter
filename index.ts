@@ -1,9 +1,10 @@
 import { ExpressionConstructor } from "./expression/ExpressionConstructor";
 import { FormularParser } from "./parser/FormularParser";
 import { Tokeniser } from "./tokeniser/FormularTokeniser";
+import { FormularInterpreter } from "./interpreter/FormularInterpreter";
 const data: Data = {
    age: 20,
-   sexe: "M",
+   sexe: "H",
    poids: 60,
    taille: 1.64,
    niveauActivite: 1.56,
@@ -48,8 +49,8 @@ const exp = ExpressionConstructor.addition<Data>(
       ExpressionConstructor.fieldReference<Data, number>("niveauActivite"),
    ),
 );
-const formula = `(10 * poids) + (6.25 * taille) - (5 * age )+ ((sexe == "H" ? 5 : (-161)) * niveauActivite6)`;
-
+const formula = `(10 * poids) + (6.25 * taille) - (5 * age ) + ((sexe == "H" ? 5 : (-161)) * niveauActivite)`;
+console.log(exp.execute(data));
 const result: { [key: number]: any[] } = {};
 
 const operator: { [key: number]: any[] } = {};
@@ -85,4 +86,7 @@ const tokeniser = (formul: string) => {
 const fTokeniser = new Tokeniser();
 
 const fParser = new FormularParser();
-fParser.execute(fTokeniser.execute(formula));
+const fInterpreter = new FormularInterpreter();
+const astTree = fParser.execute(fTokeniser.execute("4 + 3-(1+2)"));
+console.log(astTree);
+fInterpreter.execute<Data>(astTree, data);

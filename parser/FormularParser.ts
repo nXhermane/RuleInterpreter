@@ -1,7 +1,7 @@
 import { REGEX } from "../constant";
 
-type Operator = "+" | "-" | "/" | "*" | ">" | "||" | "<" | "&&" | ">=" | "<=" | "==";
-interface Node {
+type Operator = "+" | "-" | "/" | "*" | ">" | "||" | "<" | "&&" | ">=" | "<=" | "=="|"!=";
+export interface Node {
    operator?: Operator;
    left?: Node;
    right?: Node;
@@ -10,8 +10,15 @@ interface Node {
    isFalse?: Node;
    value?: number | string;
    fieldName?: string;
+   isConditional() :boolean
+      
+   
+   isValue(): boolean
+   isComparaison(): boolean
+   isField(): boolean
+   isNode() :boolean
 }
-class AstNode implements Node {
+export class AstNode implements Node {
    operator?: Operator;
    left?: Node;
    right?: Node;
@@ -20,14 +27,24 @@ class AstNode implements Node {
    isFalse?: Node;
    value?: number | string;
    fieldName?: string;
-   isValue(){
-     return !!this.value
+   isConditional() {
+      return !!this.condition && !!this.isFalse && !!this.isTrue;
    }
-   isCondition(){
-     return !!this.condition
+   isValue(): boolean {
+      return !!this.value;
    }
-   isField(){
-     return !!this.fieldName
+   isComparaison(): boolean {
+      return !!this.isComparaisonOperator();
+   }
+   isField(): boolean {
+      return !!this.fieldName;
+   }
+   isNode() {
+      return !this.isValue() && !this.isField() && !this.isComparaison() && !this.isConditional();
+   }
+   private isComparaisonOperator() {
+      if ([">", "||", "<", "&&", ">=", "<=", "==","!="].includes(this.operator as string)) return true;
+      return false;
    }
 }
 export class FormularParser {
@@ -76,7 +93,7 @@ export class FormularParser {
       if (regex.test(expression)) {
          throw new Error("Incorrect Operator error");
       }
-      const validOperationCheckerRegex = />=|<=|==|&&|\|\||[+-\/*<>][\w\(]/;
+      const validOperationCheckerRegex = />=|<=|==|!=|&&|\|\||[+-\/*<>][\w\(]/;
       if (!validOperationCheckerRegex.test(expression)) {
          throw new Error("Incorrect Operator position for Operande");
       }
@@ -103,7 +120,7 @@ export class FormularParser {
          }
       });
    }
-   execute(tokens: (string | number)[]): AstNode[] {
+   execute(tokens: (string | number)[]): Node {
       if (this.isFormular(tokens)) {
          this.checkSynthax(tokens);
          return this.parser(tokens);
@@ -112,11 +129,12 @@ export class FormularParser {
       }
    }
 
-   private parser(tokens: (string | number)[]): AstNode[] {
+   private parser(tokens: (string | number)[]): AstNode {
       const postFixExpression = this.infixToPostFix(tokens);
+      console.log(postFixExpression)
       return this.generateAST(postFixExpression);
    }
-   private generateAST(tokens: (string | number)[]): AstNode[] {
+   private generateAST(tokens: (string | number)[]): AstNode {
       const stack: (string | number)[] = [];
       const tempAst: AstNode[] = [];
       const condition: AstNode[] = [];
@@ -195,7 +213,8 @@ export class FormularParser {
          this.isValue(lastValue as string | number) ? (rightNewNode.value = lastValue) : (rightNewNode.fieldName = lastValue as string);
          (tempAst[tempAst.length - 1] as AstNode).right = rightNewNode as AstNode;
       }
-      return tempAst as AstNode[];
+
+      return tempAst[0];
    }
    private infixToPostFix(tokens: (string | number)[]): (string | number)[] {
       const output: (string | number)[] = [];
@@ -220,7 +239,7 @@ export class FormularParser {
                while (operators.length > 0 && operators[operators.length - 1] !== "?") {
                   output.push(operators.pop()!);
                }
-            } else if (["+", "-", "/", "*", ">", "||", "<", "&&", ">=", "<=", "==", "?"].includes(operatorAndParentesix)) {
+            } else if (["+", "-", "/", "*", ">", "||", "<", "&&", ">=", "<=", "==", "!=","?"].includes(operatorAndParentesix)) {
                while (operators.length > 0 && this.priority(operators[operators.length - 1]) >= priority) {
                   output.push(operators.pop()!);
                }
@@ -237,12 +256,12 @@ export class FormularParser {
    private priority(operator: string): number {
       if (["+", "-"].includes(operator)) return 1;
       if (["/", "*"].includes(operator)) return 2;
-      if ([">", "||", "<", "&&", ">=", "<=", "==", "?"].includes(operator)) return 3;
+      if ([">", "||", "<", "&&", ">=", "<=", "==","!=", "?"].includes(operator)) return 3;
       return 0;
    }
 
    private isOperatorFirstAndParenthesix(token: string | number): boolean {
-      if (["+", "-", "/", "*", ">", "||", "<", "&&", ">=", "<=", "==", "?", ":", "(", ")"].includes(String(token).trim())) return true;
+      if (["+", "-", "/", "*", ">", "||", "<", "&&", ">=", "<=", "==","!=", "?", ":", "(", ")"].includes(String(token).trim())) return true;
       return false;
    }
    private isArithmeticOperator(token: string | number): boolean {
@@ -250,7 +269,7 @@ export class FormularParser {
       return false;
    }
    private isComparaisonOperator(token: string | number) {
-      if ([">", "||", "<", "&&", ">=", "<=", "=="].includes(token as string)) return true;
+      if ([">", "||", "<", "&&", ">=", "<=", "==","!="].includes(token as string)) return true;
       return false;
    }
    private isTernaryOperator(token: string | number): boolean {
