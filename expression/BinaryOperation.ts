@@ -1,6 +1,6 @@
 import { Expression } from "./Expression";
 
-export class BinaryOperation<T,R> extends Expression<T, number> {
+export class BinaryOperation<T, R> extends Expression<T, number> {
   constructor(
     private left: Expression<T, R>,
     private right: Expression<T, R>,

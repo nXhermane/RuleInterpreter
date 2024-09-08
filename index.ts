@@ -50,43 +50,9 @@ const exp = ExpressionConstructor.addition<Data>(
    ),
 );
 const formula = `(10 * poids) + (6.25 * taille) - (5 * age ) + ((sexe == "H" ? 5 : (-161)) * niveauActivite)`;
-console.log(exp.execute(data));
-const result: { [key: number]: any[] } = {};
-
-const operator: { [key: number]: any[] } = {};
-let counter = 0;
-const tokeniser = (formul: string) => {
-   counter++;
-   let stackCounter = 0;
-   let lastIndex = 1;
-   formul.split("").forEach((char: string, index: number) => {
-      if (char === "(") {
-         if (stackCounter === 0) lastIndex = index + 1;
-         stackCounter++;
-         return;
-      } else if (char === ")") {
-         stackCounter--;
-      }
-      if (stackCounter === 0) {
-         if (["+", "-", "*", "/"].includes(char.trim())) {
-            operator[counter] ? operator[counter].push(char) : (operator[counter] = [char]);
-         } else if (char === ")") {
-            const token = formul.slice(lastIndex, index);
-            const regex = /\w+\s+[\+\-\/\*]\s+\w+/;
-            if (!regex.test(token)) {
-               tokeniser(token);
-            } else {
-               result[counter] ? result[counter].push(token) : (result[counter] = [token]);
-            }
-         }
-      }
-   });
-};
 
 const fTokeniser = new Tokeniser();
-
 const fParser = new FormularParser();
 const fInterpreter = new FormularInterpreter();
-const astTree = fParser.execute(fTokeniser.execute(formula));
-console.log(astTree,JSON.stringify(astTree));
+const astTree = fParser.execute(fTokeniser.execute(formula))
 fInterpreter.execute<Data>(astTree, data);
