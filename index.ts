@@ -87,6 +87,6 @@ const fTokeniser = new Tokeniser();
 
 const fParser = new FormularParser();
 const fInterpreter = new FormularInterpreter();
-const astTree = fParser.execute(fTokeniser.execute("4 + 3-(1+2)"));
-console.log(astTree);
+const astTree = fParser.execute(fTokeniser.execute(formula));
+console.log(astTree,JSON.stringify(astTree));
 fInterpreter.execute<Data>(astTree, data);
