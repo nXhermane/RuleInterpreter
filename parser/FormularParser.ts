@@ -155,11 +155,11 @@ export class FormularParser {
 
   private parser(tokens: (string | number)[]): AstNode {
     const postFixExpression = this.infixToPostFix(tokens);
-    const result = this.newGenerateAST(postFixExpression);
+    const result = this.generateAST(postFixExpression);
     return result;
   }
 
-  private newGenerateAST(tokens: (string | number)[]): AstNode {
+  private generateAST(tokens: (string | number)[]): AstNode {
     const stack: (string | number)[] = [];
     const tempAst: AstNode[] = [];
     let index: number = 0;
