@@ -154,97 +154,50 @@ export class FormularParser {
   }
 
   private parser(tokens: (string | number)[]): AstNode {
+    console.log(tokens);
     const postFixExpression = this.infixToPostFix(tokens);
+    console.log(postFixExpression);
     const result = this.generateAST(postFixExpression);
     return result;
   }
 
   private generateAST(tokens: (string | number)[]): AstNode {
-    const stack: (string | number)[] = [];
-    const tempAst: AstNode[] = [];
-    let index: number = 0;
-    const result = this._generateAst(tokens, index, stack, tempAst);
-    return result;
+    const stack:AstNode[]= []
+    let counter = 0
+    return this._generateAST(tokens, counter, stack)
   }
-  private _generateAst(
+  private _generateAST(
     tokens: (string | number)[],
     index: number,
-    stack: (string | number)[] = [],
-    tempAst: AstNode[] = []
-  ): any {
+    stack: AstNode[] = []
+  ): AstNode {
     const token = tokens[index];
-    if (!token) return tempAst[0];
+    if (!token) return stack[0]
     if (this.isOperatorFirstAndParenthesix(token)) {
+      const node = new AstNode();
+      node.operator = token as Operator;
       if (this.isArithmeticOperator(token)) {
-        const node = new AstNode();
-        node.operator = token as Operator;
-        node.left = new AstNode();
-        node.right = new AstNode();
-        if (stack.length >= 2) {
-          const rightValue = stack.pop()!;
-          const leftValue = stack.pop()!;
-          if (this.isValue(rightValue)) node.right.value = rightValue;
-          else node.right.fieldName = rightValue as string;
-          if (this.isValue(leftValue)) node.left.value = leftValue;
-          else node.left.fieldName = leftValue as string;
-        } else if (stack.length == 1 && tempAst.length > 0) {
-          const rightValue = stack.pop()!;
-          const leftValue = tempAst.pop()!;
-          if (this.isValue(rightValue)) node.right.value = rightValue;
-          else node.right.fieldName = rightValue as string;
-          node.left = leftValue;
-        } else {
-          const rightValue = tempAst.pop()!;
-          const leftValue = tempAst.pop()!;
-          node.right = rightValue;
-          node.left = leftValue;
-        }
-        tempAst.push(node);
+        node.right = stack.pop()!;
+        node.left = stack.pop()!;
       } else if (this.isComparaisonOperator(token)) {
-        const node = new AstNode();
-        node.operator = token as Operator;
-        node.left = new AstNode();
-        node.right = new AstNode();
-        if (stack.length >= 2) {
-          const rightValue = stack.pop()!;
-          const leftValue = stack.pop()!;
-          if (this.isValue(rightValue)) node.right.value = rightValue;
-          else node.right.fieldName = rightValue as string;
-          if (this.isValue(leftValue)) node.left.value = leftValue;
-          else node.left.fieldName = leftValue as string;
-        } else if (stack.length == 1 && tempAst.length > 0) {
-          const rightValue = stack.pop()!;
-          const leftValue = tempAst.pop()!;
-          if (this.isValue(rightValue)) node.right.value = rightValue;
-          else node.right.fieldName = rightValue as string;
-          node.left = leftValue;
-        } else {
-          const rightValue = tempAst.pop()!;
-          const leftValue = tempAst.pop()!;
-          node.right = rightValue;
-          node.left = leftValue;
-        }
-        tempAst.push(node);
+        node.right = stack.pop()!;
+        node.left = stack.pop()!;
       } else if (this.isTernaryOperator(token)) {
-        const node = new AstNode();
-        node.operator = token as Operator;
-        node.isTrue = new AstNode();
-        node.isFalse = new AstNode();
-        node.condition = tempAst.pop()!;
-        if (stack.length >= 2) {
-          const rightValue = stack.pop()!;
-          const leftValue = stack.pop()!;
-          if (this.isValue(rightValue)) node.isFalse.value = rightValue;
-          else node.isFalse.fieldName = rightValue as string;
-          if (this.isValue(leftValue)) node.isTrue.value = leftValue;
-          else node.fieldName = leftValue as string;
-        }
-        tempAst.push(node);
+        node.isFalse = stack.pop()!;
+        node.isTrue = stack.pop()!;
+        node.condition = stack.pop()!;
       }
+      stack.push(node);
     } else {
-      stack.push(token);
+      const node = new AstNode();
+      if (this.isValue(token)) {
+        node.value = token as number;
+      } else {
+        node.fieldName = token as string;
+      }
+      stack.push(node);
     }
-    return this._generateAst(tokens, index + 1, stack, tempAst);
+    return this._generateAST(tokens, index + 1, stack);
   }
   private infixToPostFix(tokens: (string | number)[]): (string | number)[] {
     const output: (string | number)[] = [];
@@ -360,3 +313,4 @@ export class FormularParser {
     return typeof token === "number" || valueRegex.test(token) ? true : false;
   }
 }
+
