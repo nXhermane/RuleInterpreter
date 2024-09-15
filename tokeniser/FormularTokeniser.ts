@@ -1,5 +1,6 @@
 import { REGEX } from "../constant";
-export class Tokeniser {
+
+export class FormularTokeniser {
   formatInput(input: string): string {
     const formatedExpression = input
       .replace(REGEX.formularOperatorG, " $1 ")

@@ -1,0 +1,1590 @@
+[
+  {
+    "tagName": "RETOL",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 400,
+        "amt": 600
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 500,
+        "amt": 600
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 210,
+        "anr": 300,
+        "amt": 600
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 275,
+        "anr": 400,
+        "amt": 900
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 445,
+        "anr": 600,
+        "amt": 1700
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 630,
+        "anr": 900,
+        "amt": 2800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 625,
+        "anr": 900,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 625,
+        "anr": 900,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 625,
+        "anr": 900,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 625,
+        "anr": 900,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 420,
+        "anr": 600,
+        "amt": 1700
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 485,
+        "anr": 700,
+        "amt": 2800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 500,
+        "anr": 700,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 500,
+        "anr": 700,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 500,
+        "anr": 700,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 500,
+        "anr": 700,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 530,
+        "anr": 750,
+        "amt": 2800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 550,
+        "anr": 770,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 550,
+        "anr": 770,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 885,
+        "anr": 1200,
+        "amt": 2800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 900,
+        "anr": 1300,
+        "amt": 3000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 900,
+        "anr": 1300,
+        "amt": 3000
+      }
+    ],
+    "unit": "mcg"
+  },
+  {
+    "tagName": "VITD",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 10,
+        "amt": 25
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 10,
+        "amt": 38
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 63
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 75
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 20,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 20,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      }
+    ],
+    "unit": "mcg"
+  },
+  {
+    "tagName": "VITE",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 4,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 5,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 5,
+        "anr": 6,
+        "amt": 200
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 6,
+        "anr": 7,
+        "amt": 300
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 9,
+        "anr": 11,
+        "amt": 600
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 9,
+        "anr": 11,
+        "amt": 600
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 10,
+        "anr": 15,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 12,
+        "anr": 15,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 12,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 16,
+        "anr": 19,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 10,
+        "anr": 15,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 16,
+        "anr": 19,
+        "amt": 1000
+      }
+    ],
+    "unit": "mg"
+  },
+  {
+    "tagName": "VITK",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "amt": null,
+        "as": 2.0
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "amt": null,
+        "as": 2.5
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "amt": null,
+        "as": 30
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "amt": null,
+        "as": 55
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "amt": null,
+        "as": 60
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "as": 75,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "as": 120,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "as": 120,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "as": 120,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "as": 120,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "as": 60,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "as": 75,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "as": 75,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "as": 75,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "as": 90,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "as": 90,
+        "amt": null
+      }
+    ],
+    "unit": "mcg"
+  },
+  {
+    "tagName": "VITC",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 40,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 50,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 13,
+        "anr": 15,
+        "amt": 400
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 22,
+        "anr": 25,
+        "amt": 650
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 39,
+        "anr": 45,
+        "amt": 1200
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 63,
+        "anr": 75,
+        "amt": 1800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 75,
+        "anr": 90,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 75,
+        "amt": 2000,
+        "anr": 90
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 75,
+        "anr": 90,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 75,
+        "anr": 90,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 39,
+        "anr": 45,
+        "amt": 1200
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 56,
+        "anr": 65,
+        "amt": 1800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 60,
+        "anr": 75,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 60,
+        "anr": 75,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 60,
+        "anr": 75,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 60,
+        "anr": 75,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 66,
+        "anr": 80,
+        "amt": 1800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 70,
+        "anr": 85,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 70,
+        "anr": 85,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 96,
+        "anr": 115,
+        "amt": 1800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 100,
+        "anr": 120,
+        "amt": 2000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 100,
+        "anr": 120,
+        "amt": 2000
+      }
+    ],
+    "unit": "mg"
+  },
+  {
+    "tagName": "THIA",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 0.2,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 0.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 0.4,
+        "anr": 0.5,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 0.5,
+        "anr": 0.6,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 0.7,
+        "anr": 0.9,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.0,
+        "anr": 1.2,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.0,
+        "anr": 1.2,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.0,
+        "anr": 1.2,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.0,
+        "anr": 1.2,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.0,
+        "anr": 1.2,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 0.7,
+        "anr": 0.9,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.0,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.2,
+        "amt": null,
+        "anr": 1.4
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      }
+    ],
+    "unit": "mg"
+  },
+  {
+    "tagName": "RIBF",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 0.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 0.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 0.4,
+        "anr": 0.5,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 0.5,
+        "anr": 0.6,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 0.8,
+        "anr": 0.9,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 0.8,
+        "anr": 0.9,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.0,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 0.9,
+        "anr": 1.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.2,
+        "anr": 1.4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.3,
+        "amt": null,
+        "anr": 1.6
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.3,
+        "anr": 1.6,
+        "amt": null
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.3,
+        "anr": 1.6,
+        "amt": null
+      }
+    ],
+    "unit": "mg"
+  },
+  {
+    "tagName": "NIA",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 2,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 4,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 5,
+        "anr": 6,
+        "amt": 10
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 6,
+        "anr": 8,
+        "amt": 15
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 9,
+        "anr": 12,
+        "amt": 20
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 16,
+        "amt": 30
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 16,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 16,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 16,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 12,
+        "anr": 16,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 9,
+        "anr": 12,
+        "amt": 20
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 11,
+        "anr": 14,
+        "amt": 30
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 11,
+        "anr": 14,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 11,
+        "anr": 14,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 11,
+        "anr": 14,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 11,
+        "anr": 14,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 14,
+        "anr": 18,
+        "amt": 30
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 14,
+        "anr": 18,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 14,
+        "anr": 18,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 13,
+        "amt": 30,
+        "anr": 17
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 13,
+        "anr": 17,
+        "amt": 35
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 13,
+        "anr": 17,
+        "amt": 35
+      }
+    ],
+    "unit": "mg"
+  },
+  {
+    "tagName": "VITB6",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 0.1,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 0.3,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 0.4,
+        "anr": 0.5,
+        "amt": 30
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 0.5,
+        "anr": 0.6,
+        "amt": 40
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 0.8,
+        "anr": 1.0,
+        "amt": 60
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": 80
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.4,
+        "anr": 1.7,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 1.4,
+        "anr": 1.7,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 0.8,
+        "anr": 1.0,
+        "amt": 60
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 1.0,
+        "anr": 1.2,
+        "amt": 80
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 1.1,
+        "anr": 1.3,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 1.3,
+        "anr": 1.5,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 1.3,
+        "anr": 1.5,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.6,
+        "anr": 1.9,
+        "amt": 80
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.6,
+        "anr": 1.9,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 1.6,
+        "anr": 1.9,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.7,
+        "amt": 80,
+        "anr": 2.0
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.7,
+        "anr": 2.0,
+        "amt": 100
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 1.7,
+        "anr": 2.0,
+        "amt": 100
+      }
+    ],
+    "unit": "mg"
+  },
+  {
+    "tagName": "FOLAC",
+    "origin": "canada",
+    "value": [
+      {
+        "condition": "(age_m>=0)&&(age_m<=6)",
+        "weight": 1,
+        "bme": null,
+        "anr": 65,
+        "amt": null
+      },
+      {
+        "condition": "(age_m>=7)&&(age_m<12)",
+        "weight": 1,
+        "bme": null,
+        "anr": 80,
+        "amt": null
+      },
+      {
+        "condition": "(age_y >=1)&&(age_y<=3)",
+        "weight": 1,
+        "bme": 120,
+        "anr": 150,
+        "amt": 300
+      },
+      {
+        "condition": "(age_y >=4)&&(age_y <=8)",
+        "weight": 1,
+        "bme": 160,
+        "anr": 200,
+        "amt": 400
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"H\")",
+        "weight": 1,
+        "bme": 250,
+        "anr": 300,
+        "amt": 600
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 330,
+        "anr": 400,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 320,
+        "amt": 1000,
+        "anr": 400
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"H\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=9)&&(age_y<=13)&&(sexe ==\"F\")",
+        "weight": 1,
+        "bme": 250,
+        "anr": 300,
+        "amt": 600
+      },
+      {
+        "condition": "(age_y>=14)&&(age_y<=18)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 330,
+        "anr": 400,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=51)&&(age_y<=70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>70)&&(sexe==\"F\")",
+        "weight": 1,
+        "bme": 320,
+        "anr": 400,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 520,
+        "anr": 600,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 520,
+        "anr": 600,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"pregnancy\")",
+        "weight": 2,
+        "bme": 520,
+        "anr": 600,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y<=18)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 450,
+        "anr": 500,
+        "amt": 800
+      },
+      {
+        "condition": "(age_y>=19)&&(age_y<=30)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 450,
+        "anr": 500,
+        "amt": 1000
+      },
+      {
+        "condition": "(age_y>=31)&&(age_y<=50)&&(medical_condition==\"lactation\")",
+        "weight": 2,
+        "bme": 450,
+        "anr": 500,
+        "amt": 1000
+      }
+    ],
+    "unit": "mcg"
+  }
+]

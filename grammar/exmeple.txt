@@ -1,0 +1,38 @@
+// Exemple de définition d'un patient
+define patient = (age=25, height=170);
+
+// Exemple de définition d'un poids
+define weight = 70;
+
+// Exemple d'appel de fonction pour calculer l'IMC
+define bmi = calculateBMI(weight, patient.height);
+
+// Instruction conditionnelle pour déterminer la catégorie
+if (patient.age > 18) then:
+    define category = "Adult";
+else:
+    define category = "Minor";
+
+// Instruction de retour pour retourner la hauteur du patient
+return patient.height;
+
+// Utilisation d'une instruction conditionnelle ternaire
+define status = (patient.age >= 18 ? "Adult" : "Minor");
+
+// Appel de fonction avec conditions
+if (loadData() == "success") then:
+    define result = processData();
+else:
+    return "Data loading failed.";
+
+// Définition globale pour la hauteur
+glob globalHeight = 175;
+
+// Définition d'un objet avec plusieurs propriétés
+define employee = (name="John Doe", age=30, position="Nutritionist");
+
+// Utilisation de la valeur d'une propriété d'un objet
+define message = "The employee " + employee.name + " is " + employee.age + " years old.";
+
+// Appel de fonction avec des arguments
+define result = load("data.json");
