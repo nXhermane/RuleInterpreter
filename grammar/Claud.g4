@@ -1,4 +1,4 @@
-grammar NutriXnapDSL;
+grammar Claud;
 
 script: statement* EOF;
 
