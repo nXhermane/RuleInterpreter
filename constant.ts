@@ -1,4 +1,5 @@
-export const REGEX ={
-    formularOperatorG:/(<=|>=|==|\|\||&&|!=|[+/\-*=()<>?:])/g,
-    formularOperator: /(<=|>=|==|\|\||&&|!=|[+/\-*=()<>?!:])/
-}
+export const REGEX = {
+   formularOperatorG: /(<=|>=|==|\|\||&&|!=|[+/\-*=()<>?:])/g,
+   formularOperator: /(<=|>=|==|\|\||&&|!=|[+/\-*=()<>?!:])/,
+   formularFieldName: /f_[\w]/,
+};

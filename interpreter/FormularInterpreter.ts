@@ -1,8 +1,21 @@
 import { AstNode, Node } from "./../parser/FormularParser";
 import { Expression } from "./../expression/Expression";
 import { ExpressionConstructor } from "./../expression/ExpressionConstructor";
+
 type VariableContainer = { [key: string]: string | number };
+
+/**
+ * The FormularInterpreter class is responsible for interpreting an abstract syntax tree (AST) 
+ * representing a mathematical or logical expression. It evaluates expressions based on provided 
+ * variable data and constructs appropriate expression objects for processing.
+ */
 export class FormularInterpreter {
+  /**
+   * Executes the interpretation of the AST tree and returns the evaluated result.
+   * @param {Node} astTree The abstract syntax tree to be interpreted.
+   * @param {T} data The variable data to use for evaluation.
+   * @returns {number | string} The result of the expression evaluation.
+   */
   execute<T extends VariableContainer>(
     astTree: Node,
     data: T
@@ -10,6 +23,13 @@ export class FormularInterpreter {
     const result = this.interprete<T>(astTree, data).execute(data);
     return result;
   }
+
+  /**
+   * Interprets the AST tree recursively and constructs expression objects based on the node types.
+   * @param {Node} astTree The abstract syntax tree to interpret.
+   * @param {T} data The variable data to use for evaluation.
+   * @returns {Expression<T, string | number>} The constructed expression object.
+   */
   interprete<T extends VariableContainer>(
     astTree: Node,
     data: T
@@ -24,25 +44,21 @@ export class FormularInterpreter {
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-          break;
         case "-":
           return ExpressionConstructor.substration<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-          break;
         case "*":
           return ExpressionConstructor.multiplication<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-          break;
         case "/":
           return ExpressionConstructor.division<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-          break;
         default:
           throw new Error(`This operator ${operator} is not supported.`);
       }
@@ -80,46 +96,38 @@ export class FormularInterpreter {
             left,
             right
           );
-          break;
         case "<":
           return ExpressionConstructor.inferior<T, string | number>(
             left,
             right
           );
-          break;
         case "==":
           return ExpressionConstructor.equality<T, string | number>(
             left,
             right
           );
-          break;
         case ">=":
           return ExpressionConstructor.or<T, string | number>(
             ExpressionConstructor.superior<T, string | number>(left, right),
             ExpressionConstructor.equality<T, string | number>(left, right)
           );
-          break;
         case "<=":
           return ExpressionConstructor.or<T, string | number>(
             ExpressionConstructor.inferior<T, string | number>(left, right),
             ExpressionConstructor.equality<T, string | number>(left, right)
           );
-          break;
         case "||":
           return ExpressionConstructor.or<T, string | number>(left, right);
-          break;
         case "&&":
           return ExpressionConstructor.and<T, string | number>(left, right);
-          break;
         case "!=":
           return ExpressionConstructor.different<T, string | number>(
             left,
             right
           );
-          break;
         default:
           throw new Error(
-            `This comparaison ${comparaisonOperator} methode is not supported`
+            `This comparaison ${comparaisonOperator} method is not supported`
           );
       }
     } else if (astTree.isConditional()) {
@@ -133,7 +141,7 @@ export class FormularInterpreter {
       );
     } else {
       throw new Error(
-        `This Expression is not Correct. Please verify You expression [Interpreter]:${astTree}`
+        `This Expression is not Correct. Please verify Your expression [Interpreter]:${astTree}`
       );
     }
   }

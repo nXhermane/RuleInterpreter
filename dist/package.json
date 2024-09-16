@@ -1,19 +1,20 @@
 {
-  "name": "ruleinterpreter",
+  "name": "smartcal",
+  "description": "SmartCalc is a lightweight library for evaluating mathematical expressions and ternary conditions using dynamic data. It simplifies the execution of formulas, including arithmetic operations and logical evaluations, by interpreting expressions with custom variables.",
   "version": "1.0.0",
-  "description": "\"Le Ruleinterpretor est un module du projet nutrixnap charger de gerer l'interpretation des regles entrer par le nutritionniste\"",
   "main": "./dist/index.js",
-  "types":"./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack && node clean-empty-dirs.js"
+    "build": "webpack && node clean-empty-dirs.js",
+    "build:doc:html": "npx documentation build ./**/*.ts -f html -o docs",
+    "build:doc:md": "npx documentation build ./**/*.ts -f md -o docs/Readme.md"
   },
   "keywords": [
-    "rule",
+    "formulae",
     "interpretor",
-    "nutrixnap",
-    "nutriwell",
-    "nutrition"
+    "math",
+    "expression"
   ],
   "author": "nXhermane",
   "license": "ISC",
@@ -35,8 +36,5 @@
     "dts-bundle-webpack": "^1.0.2",
     "terser-webpack-plugin": "^5.3.10",
     "wepack-cli": "^0.0.1-security"
-  },
-  "dependencies": {
-    "antlr4": "^4.13.2"
   }
 }

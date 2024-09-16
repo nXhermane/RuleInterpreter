@@ -1,18 +1,15 @@
 import { Expression } from "./Expression";
 
 /**
- * Représente une opération binaire sur deux expressions.
- * @template T Le type d'entrée de l'expression.
- * @template R Le type de sortie des expressions.
- * @param {Expression<T, R>} left L'expression de gauche.
- * @param {Expression<T, R>} right L'expression de droite.
- * @param {(a: R, b: R) => number} operator La fonction opérateur qui prend deux valeurs de type R et retourne un nombre.
- 
+ * Represents a binary operation on two expressions.
+ * 
+ * @template T The input type of the expression.
+ * @template R The output type of the expressions.
+ * @param {Expression<T, R>} left The left expression.
+ * @param {Expression<T, R>} right The right expression.
+ * @param {(a: R, b: R) => number} operator The operator function that takes two values of type R and returns a number.
  */
 export class BinaryOperation<T, R> extends Expression<T, number> {
-  /**
-   * Crée une instance de BinaryOperation.
-  */
   constructor(
     private left: Expression<T, R>,
     private right: Expression<T, R>,
@@ -22,9 +19,10 @@ export class BinaryOperation<T, R> extends Expression<T, number> {
   }
 
   /**
-   * Exécute l'opération binaire sur l'objet donné.
-   * @param {T} obj L'objet sur lequel l'opération sera exécutée.
-   * @returns {number} Le résultat de l'opération binaire.
+   * Executes the binary operation on the given object.
+   * 
+   * @param {T} obj The object on which the operation will be executed.
+   * @returns {number} The result of the binary operation.
    */
   execute(obj: T): number {
     return this.operator(this.left.execute(obj), this.right.execute(obj));

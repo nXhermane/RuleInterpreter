@@ -35,6 +35,10 @@ const config = {
                from: "./package.json",
                to: "./package.json",
             },
+            {
+               from: "./docs",
+               to: "./docs",
+            },
          ],
       }),
    ],

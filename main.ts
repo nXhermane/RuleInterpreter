@@ -7,8 +7,8 @@ import { LiteralValue } from "./expression/LiteralValue";
 import { FormularInterpreter } from "./interpreter/FormularInterpreter";
 import { FormularParser, AstNode } from "./parser/FormularParser";
 import { FormularTokeniser } from "./tokeniser/FormularTokeniser";
-
-export default {
+import SmartCal from "./index"
+export  {
    BinaryOperation,
    ConditionalExpression,
    Expression,
@@ -20,3 +20,4 @@ export default {
    AstNode,
    FormularTokeniser,
 };
+export default SmartCal

@@ -6,7 +6,9 @@
   "types":"./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack && node clean-empty-dirs.js"
+    "build": "webpack && node clean-empty-dirs.js",
+    "build:doc:html":"npx documentation build ./**/*.ts -f html -o docs",
+    "build:doc:md":"npx documentation build ./**/*.ts -f md -o docs/Readme.md"
   },
   "keywords": [
     "rule",
