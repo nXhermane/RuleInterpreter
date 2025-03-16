@@ -1,7 +1,7 @@
 import { Expression } from "./Expression";
 import { REGEX } from "./../constant";
 import { FormularParser } from "../parser/FormularParser";
-import { FormularTokeniser } from "../tokeniser/FormularTokeniser";
+import { FormularTokenizer } from "../tokenizer/FormularTokenizer";
 import { FormularInterpreter } from "../interpreter/FormularInterpreter";
 
 /**
@@ -50,10 +50,10 @@ export class FieldReference<T extends { [kex: string]: any }, R> extends Express
     * @returns {R} The result of executing the formula.
     */
    private executeFormularRef(obj: T): R {
-      const fTokeniser = new FormularTokeniser();
+      const fTokenizer = new FormularTokenizer();
       const fParser = new FormularParser();
       const fInterpreter = new FormularInterpreter();
-      const astTree = fParser.execute(fTokeniser.execute(obj[this.fieldName] as string));
+      const astTree = fParser.execute(fTokenizer.execute(obj[this.fieldName] as string));
       return fInterpreter.execute<T>(astTree, obj) as R;
    }
 }

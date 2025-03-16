@@ -1,22 +1,26 @@
-import { REGEX } from "../constant";
+import {
+  ParenthesisOpenOperator,
+  Priority_1_Operator as SignOperators,
+  REGEX,
+  ParenthesisCloseOperator,
+} from "../constant";
 
 /**
- * The FormularTokeniser class is responsible for tokenizing and formatting 
- * mathematical expressions for further evaluation. It handles the input 
+ * The FormularTokenizer class is responsible for tokenizing and formatting
+ * mathematical expressions for further evaluation. It handles the input
  * string by formatting it, filtering tokens, and preparing them for processing.
  */
-export class FormularTokeniser {
+export class FormularTokenizer {
   /**
    * Formats the input string by replacing operators and trimming whitespace.
    * @param {string} input The input string to be formatted.
    * @returns {string} The formatted expression.
    */
   formatInput(input: string): string {
-    const formatedExpression = input
+    return input
       .replace(REGEX.formularOperatorG, " $1 ")
       .replace(/\s+/g, " ")
       .trim();
-    return formatedExpression;
   }
 
   /**
@@ -28,18 +32,22 @@ export class FormularTokeniser {
    */
   filterTokens(tokens: string[]): (string | number)[] {
     const filteredTokens: (string | number)[] = [];
-    let expectedClosedParenthesix = false;
+    let expectedClosedParenthesis = false;
     tokens.forEach((token: string) => {
+      console.log(token)
       const regex = /^\d+(\.\d+)?$/;
       const negativeNumberRegex = /-\d+/;
       const lastFilteredToken = filteredTokens[filteredTokens.length - 1];
       if (regex.test(token)) {
         const firstPop = filteredTokens.pop();
         const secondPop = filteredTokens.pop();
-        if (firstPop && secondPop) {
-          if (["+", "-"].includes(firstPop as string) && secondPop === "(") {
+        if (firstPop != undefined && secondPop != undefined) {
+          if (
+            SignOperators.includes(firstPop as string) &&
+            secondPop === ParenthesisOpenOperator
+          ) {
             filteredTokens.push(Number(firstPop + token));
-            expectedClosedParenthesix = true;
+            expectedClosedParenthesis = true;
           } else {
             filteredTokens.push(
               secondPop as string,
@@ -48,8 +56,8 @@ export class FormularTokeniser {
             );
           }
         } else {
-          if (!secondPop) {
-            if (firstPop) {
+          if (secondPop == undefined) {
+            if (firstPop !=undefined) {
               filteredTokens.push(firstPop as string, Number(token));
             } else {
               filteredTokens.push(Number(token));
@@ -60,10 +68,10 @@ export class FormularTokeniser {
         }
       } else if (
         negativeNumberRegex.test(lastFilteredToken as string) &&
-        token === ")" &&
-        expectedClosedParenthesix
+        token === ParenthesisCloseOperator &&
+        expectedClosedParenthesis
       ) {
-        expectedClosedParenthesix = false;
+        expectedClosedParenthesis = false;
       } else {
         filteredTokens.push(token);
       }
@@ -79,8 +87,8 @@ export class FormularTokeniser {
    * @returns {any[]} The array of filtered tokens resulting from the tokenization process.
    */
   execute(input: string): any[] {
-    const formatedInput = this.formatInput(input);
-    const tokens = formatedInput.split(" ");
+    const formattedInput = this.formatInput(input);
+    const tokens = formattedInput.split(" ");
     const filteredTokens = this.filterTokens(tokens);
     return filteredTokens;
   }

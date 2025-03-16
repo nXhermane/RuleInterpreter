@@ -1,0 +1,1 @@
+Je vais ajouter la prise en charge de exponent apres dans le parser sinon celui ci n'est pas encore fonctionnelle si nous tentons l'utilisation d'un exponent Operator 

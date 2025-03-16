@@ -1,4 +1,6 @@
-import SmartCalc from "./index"
+import { FormularParser } from "./parser/FormularParser";
+import { FormularTokenizer } from "./tokenizer/FormularTokenizer";
+import { FormularInterpreter } from "./interpreter/FormularInterpreter";
 const data: Data = {
    age: 20,
    sexe: "H",
@@ -20,4 +22,13 @@ const formular = `(10 * poids) + (6.25 * taille) - (5 * age ) + ((sexe == "H" ? 
 const condition = `(10 + ((10 > 5) ? ((11+5)-5) : "false"))`;
 
 
-console.log(SmartCalc<Data>(formular,data))
+const fTokenizer = new FormularTokenizer()
+const fParser = new FormularParser()
+const fInterpreter = new FormularInterpreter()
+const tokens = fTokenizer.execute("(3 ^ 1) == 2")
+console.log(tokens)
+const ast = fParser.execute(tokens)
+console.log("Parser",ast)
+const result = fInterpreter.execute(ast, {})
+console.log(result)
+// Failure : "4 ^ 2 ^ 6"

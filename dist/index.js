@@ -20,12 +20,70 @@ return /******/ (() => { // webpackBootstrap
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.REGEX = void 0;
+exports.Priority_4_Operator = exports.Priority_3_Operator = exports.Priority_2_Operator = exports.Priority_1_Operator = exports.AllOperators = exports.Operators = exports.ArithmeticOperator = exports.ComparisonOperator = exports.BackslashOperator = exports.QuestionMarkOperator = exports.ColonOperator = exports.ParenthesisCloseOperator = exports.ParenthesisOpenOperator = exports.AssignmentOperator = exports.NotEqualOperator = exports.EqualOperator = exports.LessThanOrEqualOperator = exports.GreaterThanOrEqualOperator = exports.LessThanOperator = exports.GreaterThanOperator = exports.LogicalOrOperator = exports.LogicalAndOperator = exports.ExponentialOperator = exports.MultiplicationOperator = exports.DivisionOperator = exports.SubtractionOperator = exports.AdditionOperator = exports.REGEX = void 0;
 exports.REGEX = {
-    formularOperatorG: /(<=|>=|==|\|\||&&|!=|[+/\-*=()<>?:])/g,
-    formularOperator: /(<=|>=|==|\|\||&&|!=|[+/\-*=()<>?!:])/,
-    formularFieldName: /f_[\w]/,
+    formularOperatorG: /(<=|\^|>=|==|\|\||&&|!=|[+/\-*=()<>?:])/g,
+    formularOperator: /(<=|>=|\^|==|\|\||&&|!=|[+/\-*=()<>?!:])/,
+    formularFieldName: /f_[\w]/, // that is regex that identify the formular fieldName
 };
+// Arithmetics operators
+exports.AdditionOperator = "+";
+exports.SubtractionOperator = "-";
+exports.DivisionOperator = "/";
+exports.MultiplicationOperator = "*";
+exports.ExponentialOperator = "^";
+// Logics operators
+exports.LogicalAndOperator = "&&";
+exports.LogicalOrOperator = "||";
+// Comparisons operators
+exports.GreaterThanOperator = ">";
+exports.LessThanOperator = "<";
+exports.GreaterThanOrEqualOperator = ">=";
+exports.LessThanOrEqualOperator = "<=";
+exports.EqualOperator = "==";
+exports.NotEqualOperator = "!=";
+// Others operators
+exports.AssignmentOperator = "=";
+exports.ParenthesisOpenOperator = "(";
+exports.ParenthesisCloseOperator = ")";
+exports.ColonOperator = ":";
+exports.QuestionMarkOperator = "?";
+exports.BackslashOperator = "\\";
+exports.ComparisonOperator = [
+    exports.GreaterThanOperator,
+    exports.LessThanOperator,
+    exports.LogicalOrOperator,
+    exports.LogicalAndOperator,
+    exports.GreaterThanOrEqualOperator,
+    exports.LessThanOrEqualOperator,
+    exports.EqualOperator,
+    exports.NotEqualOperator,
+];
+exports.ArithmeticOperator = [
+    exports.AdditionOperator,
+    exports.SubtractionOperator,
+    exports.DivisionOperator,
+    exports.MultiplicationOperator,
+    exports.ExponentialOperator,
+];
+exports.Operators = [
+    ...exports.ArithmeticOperator,
+    ...exports.ComparisonOperator,
+    exports.QuestionMarkOperator,
+];
+exports.AllOperators = [
+    ...exports.Operators,
+    exports.ColonOperator,
+    exports.ParenthesisCloseOperator,
+    exports.ParenthesisOpenOperator,
+];
+exports.Priority_1_Operator = [exports.AdditionOperator, exports.SubtractionOperator];
+exports.Priority_2_Operator = [exports.DivisionOperator, exports.MultiplicationOperator];
+exports.Priority_3_Operator = [exports.ExponentialOperator];
+exports.Priority_4_Operator = [
+    ...exports.ComparisonOperator,
+    exports.QuestionMarkOperator,
+];
 
 
 /***/ }),
@@ -188,7 +246,7 @@ class ExpressionConstructor {
      * @param {Expression<T, number>} right The right operand.
      * @returns {Expression<T, number>} The subtraction expression.
      */
-    static substration(left, right) {
+    static subtraction(left, right) {
         return new BinaryOperation_1.BinaryOperation(left, right, (a, b) => a - b);
     }
     /**
@@ -303,6 +361,17 @@ class ExpressionConstructor {
     static and(left, right) {
         return new BinaryOperation_1.BinaryOperation(left, right, (a, b) => Number(a && b));
     }
+    /**
+   * Creates a power (exponentiation) expression between two expressions.
+   *
+   * @template T The input type of the expressions.
+   * @param {Expression<T, number>} base The base operand.
+   * @param {Expression<T, number>} exponent The exponent operand.
+   * @returns {Expression<T, number>} The result of raising `base` to the power of `right`.
+   */
+    static pow(left, right) {
+        return new BinaryOperation_1.BinaryOperation(left, right, (a, b) => Math.pow(Number(a), Number(b)));
+    }
 }
 exports.ExpressionConstructor = ExpressionConstructor;
 
@@ -321,7 +390,7 @@ exports.FieldReference = void 0;
 const Expression_1 = __webpack_require__(/*! ./Expression */ "./expression/Expression.ts");
 const constant_1 = __webpack_require__(/*! ./../constant */ "./constant.ts");
 const FormularParser_1 = __webpack_require__(/*! ../parser/FormularParser */ "./parser/FormularParser.ts");
-const FormularTokeniser_1 = __webpack_require__(/*! ../tokeniser/FormularTokeniser */ "./tokeniser/FormularTokeniser.ts");
+const FormularTokenizer_1 = __webpack_require__(/*! ../tokenizer/FormularTokenizer */ "./tokenizer/FormularTokenizer.ts");
 const FormularInterpreter_1 = __webpack_require__(/*! ../interpreter/FormularInterpreter */ "./interpreter/FormularInterpreter.ts");
 /**
  * Represents a reference to a field in a given object, allowing
@@ -368,10 +437,10 @@ class FieldReference extends Expression_1.Expression {
      * @returns {R} The result of executing the formula.
      */
     executeFormularRef(obj) {
-        const fTokeniser = new FormularTokeniser_1.FormularTokeniser();
+        const fTokenizer = new FormularTokenizer_1.FormularTokenizer();
         const fParser = new FormularParser_1.FormularParser();
         const fInterpreter = new FormularInterpreter_1.FormularInterpreter();
-        const astTree = fParser.execute(fTokeniser.execute(obj[this.fieldName]));
+        const astTree = fParser.execute(fTokenizer.execute(obj[this.fieldName]));
         return fInterpreter.execute(astTree, obj);
     }
 }
@@ -425,15 +494,15 @@ exports.LiteralValue = LiteralValue;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports["default"] = SmartCalc;
+exports["default"] = SmartCal;
 const FormularParser_1 = __webpack_require__(/*! ./parser/FormularParser */ "./parser/FormularParser.ts");
-const FormularTokeniser_1 = __webpack_require__(/*! ./tokeniser/FormularTokeniser */ "./tokeniser/FormularTokeniser.ts");
+const FormularTokenizer_1 = __webpack_require__(/*! ./tokenizer/FormularTokenizer */ "./tokenizer/FormularTokenizer.ts");
 const FormularInterpreter_1 = __webpack_require__(/*! ./interpreter/FormularInterpreter */ "./interpreter/FormularInterpreter.ts");
-function SmartCalc(expression, obj) {
-    const fTokeniser = new FormularTokeniser_1.FormularTokeniser();
+function SmartCal(expression, obj) {
+    const fTokenizer = new FormularTokenizer_1.FormularTokenizer();
     const fParser = new FormularParser_1.FormularParser();
     const fInterpreter = new FormularInterpreter_1.FormularInterpreter();
-    return fInterpreter.execute(fParser.execute(fTokeniser.execute(expression)), obj);
+    return fInterpreter.execute(fParser.execute(fTokenizer.execute(expression)), obj);
 }
 
 
@@ -449,6 +518,7 @@ function SmartCalc(expression, obj) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.FormularInterpreter = void 0;
 const ExpressionConstructor_1 = __webpack_require__(/*! ./../expression/ExpressionConstructor */ "./expression/ExpressionConstructor.ts");
+const constant_1 = __webpack_require__(/*! ../constant */ "./constant.ts");
 /**
  * The FormularInterpreter class is responsible for interpreting an abstract syntax tree (AST)
  * representing a mathematical or logical expression. It evaluates expressions based on provided
@@ -462,7 +532,7 @@ class FormularInterpreter {
      * @returns {number | string} The result of the expression evaluation.
      */
     execute(astTree, data) {
-        const result = this.interprete(astTree, data).execute(data);
+        const result = this.interpret(astTree, data).execute(data);
         return result;
     }
     /**
@@ -471,20 +541,22 @@ class FormularInterpreter {
      * @param {T} data The variable data to use for evaluation.
      * @returns {Expression<T, string | number>} The constructed expression object.
      */
-    interprete(astTree, data) {
+    interpret(astTree, data) {
         if (astTree.isNode()) {
             const operator = astTree.operator;
-            const right = this.interprete(astTree.right, data);
-            const left = this.interprete(astTree.left, data);
+            const right = this.interpret(astTree.right, data);
+            const left = this.interpret(astTree.left, data);
             switch (operator) {
-                case "+":
+                case constant_1.AdditionOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.addition(left, right);
-                case "-":
-                    return ExpressionConstructor_1.ExpressionConstructor.substration(left, right);
-                case "*":
+                case constant_1.SubtractionOperator:
+                    return ExpressionConstructor_1.ExpressionConstructor.subtraction(left, right);
+                case constant_1.MultiplicationOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.multiplication(left, right);
-                case "/":
+                case constant_1.DivisionOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.division(left, right);
+                case constant_1.ExponentialOperator:
+                    return ExpressionConstructor_1.ExpressionConstructor.pow(left, right);
                 default:
                     throw new Error(`This operator ${operator} is not supported.`);
             }
@@ -511,35 +583,35 @@ class FormularInterpreter {
                 return ExpressionConstructor_1.ExpressionConstructor.fieldReference(astTree.fieldName);
             }
         }
-        else if (astTree.isComparaison()) {
-            const comparaisonOperator = astTree.operator;
-            const left = this.interprete(astTree.left, data);
-            const right = this.interprete(astTree.right, data);
-            switch (comparaisonOperator) {
-                case ">":
+        else if (astTree.isComparison()) {
+            const comparisonOperator = astTree.operator;
+            const left = this.interpret(astTree.left, data);
+            const right = this.interpret(astTree.right, data);
+            switch (comparisonOperator) {
+                case constant_1.GreaterThanOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.superior(left, right);
-                case "<":
+                case constant_1.LessThanOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.inferior(left, right);
-                case "==":
+                case constant_1.EqualOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.equality(left, right);
-                case ">=":
+                case constant_1.GreaterThanOrEqualOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.or(ExpressionConstructor_1.ExpressionConstructor.superior(left, right), ExpressionConstructor_1.ExpressionConstructor.equality(left, right));
-                case "<=":
+                case constant_1.LessThanOrEqualOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.or(ExpressionConstructor_1.ExpressionConstructor.inferior(left, right), ExpressionConstructor_1.ExpressionConstructor.equality(left, right));
-                case "||":
+                case constant_1.LogicalOrOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.or(left, right);
-                case "&&":
+                case constant_1.LogicalAndOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.and(left, right);
-                case "!=":
+                case constant_1.NotEqualOperator:
                     return ExpressionConstructor_1.ExpressionConstructor.different(left, right);
                 default:
-                    throw new Error(`This comparaison ${comparaisonOperator} method is not supported`);
+                    throw new Error(`This comparison ${comparisonOperator} method is not supported`);
             }
         }
         else if (astTree.isConditional()) {
-            const condition = this.interprete(astTree.condition, data);
-            const isTrue = this.interprete(astTree.isTrue, data);
-            const isFalse = this.interprete(astTree.isFalse, data);
+            const condition = this.interpret(astTree.condition, data);
+            const isTrue = this.interpret(astTree.isTrue, data);
+            const isFalse = this.interpret(astTree.isFalse, data);
             return ExpressionConstructor_1.ExpressionConstructor.condition(condition, isTrue, isFalse);
         }
         else {
@@ -563,7 +635,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.FormularTokeniser = exports.AstNode = exports.FormularParser = exports.FormularInterpreter = exports.LiteralValue = exports.FieldReference = exports.ExpressionConstructor = exports.Expression = exports.ConditionalExpression = exports.BinaryOperation = void 0;
+exports.FormularTokenizer = exports.AstNode = exports.FormularParser = exports.FormularInterpreter = exports.LiteralValue = exports.FieldReference = exports.ExpressionConstructor = exports.Expression = exports.ConditionalExpression = exports.BinaryOperation = void 0;
 const BinaryOperation_1 = __webpack_require__(/*! ./expression/BinaryOperation */ "./expression/BinaryOperation.ts");
 Object.defineProperty(exports, "BinaryOperation", ({ enumerable: true, get: function () { return BinaryOperation_1.BinaryOperation; } }));
 const ConditionalExpression_1 = __webpack_require__(/*! ./expression/ConditionalExpression */ "./expression/ConditionalExpression.ts");
@@ -581,8 +653,8 @@ Object.defineProperty(exports, "FormularInterpreter", ({ enumerable: true, get: 
 const FormularParser_1 = __webpack_require__(/*! ./parser/FormularParser */ "./parser/FormularParser.ts");
 Object.defineProperty(exports, "FormularParser", ({ enumerable: true, get: function () { return FormularParser_1.FormularParser; } }));
 Object.defineProperty(exports, "AstNode", ({ enumerable: true, get: function () { return FormularParser_1.AstNode; } }));
-const FormularTokeniser_1 = __webpack_require__(/*! ./tokeniser/FormularTokeniser */ "./tokeniser/FormularTokeniser.ts");
-Object.defineProperty(exports, "FormularTokeniser", ({ enumerable: true, get: function () { return FormularTokeniser_1.FormularTokeniser; } }));
+const FormularTokenizer_1 = __webpack_require__(/*! ./tokenizer/FormularTokenizer */ "./tokenizer/FormularTokenizer.ts");
+Object.defineProperty(exports, "FormularTokenizer", ({ enumerable: true, get: function () { return FormularTokenizer_1.FormularTokenizer; } }));
 const index_1 = __importDefault(__webpack_require__(/*! ./index */ "./index.ts"));
 exports["default"] = index_1.default;
 
@@ -599,6 +671,7 @@ exports["default"] = index_1.default;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.FormularParser = exports.AstNode = void 0;
 const constant_1 = __webpack_require__(/*! ../constant */ "./constant.ts");
+const OperatorValue = [...constant_1.ArithmeticOperator, ...constant_1.ComparisonOperator];
 /**
  * Represents a node in the Abstract Syntax Tree (AST).
  */
@@ -615,14 +688,14 @@ class AstNode {
      * @returns {boolean} True if the node is a value; otherwise, false.
      */
     isValue() {
-        return !!this.value;
+        return this.value != undefined;
     }
     /**
      * Determines if this node is a comparison operator.
      * @returns {boolean} True if the node is a comparison; otherwise, false.
      */
-    isComparaison() {
-        return !!this.isComparaisonOperator();
+    isComparison() {
+        return !!this.isComparisonOperator();
     }
     /**
      * Determines if this node is a field.
@@ -636,14 +709,17 @@ class AstNode {
      * @returns {boolean} True if the node is a node; otherwise, false.
      */
     isNode() {
-        return !this.isValue() && !this.isField() && !this.isComparaison() && !this.isConditional();
+        return (!this.isValue() &&
+            !this.isField() &&
+            !this.isComparison() &&
+            !this.isConditional());
     }
     /**
      * Checks if the operator is a comparison operator.
      * @returns {boolean} True if the operator is a comparison operator; otherwise, false.
      */
-    isComparaisonOperator() {
-        if ([">", "||", "<", "&&", ">=", "<=", "==", "!="].includes(this.operator))
+    isComparisonOperator() {
+        if (constant_1.ComparisonOperator.includes(this.operator))
             return true;
         return false;
     }
@@ -670,7 +746,8 @@ class FormularParser {
                 operatorLastIndex = index;
             }
             else {
-                if (notOperatorLastIndex == lastIndex && operatorLastIndex != lastIndex) {
+                if (notOperatorLastIndex == lastIndex &&
+                    operatorLastIndex != lastIndex) {
                     return false;
                 }
                 notOperatorLastIndex = index;
@@ -682,22 +759,22 @@ class FormularParser {
      * Checks the syntax of the provided tokens.
      * @param tokens - An array of tokens to check.
      */
-    checkSynthax(tokens) {
-        this.checkParenthesixSynthax(tokens);
-        this.checkOperatorSynthax(tokens);
-        this.checkTernaryConditionSynthax(tokens);
+    checkSyntax(tokens) {
+        this.checkParenthesisSyntax(tokens);
+        this.checkOperatorSyntax(tokens);
+        this.checkTernaryConditionSyntax(tokens);
     }
     /**
      * Checks the parenthesis syntax of the provided tokens.
      * @param tokens - An array of tokens to check.
      * @throws {Error} Throws an error if there is a parenthesis mismatch.
      */
-    checkParenthesixSynthax(tokens) {
+    checkParenthesisSyntax(tokens) {
         const stack = [];
         tokens.forEach((token) => {
-            if (token === "(")
-                stack.push("(");
-            if (token === ")") {
+            if (token === constant_1.ParenthesisOpenOperator)
+                stack.push(constant_1.ParenthesisOpenOperator);
+            if (token === constant_1.ParenthesisCloseOperator) {
                 if (stack.length === 0) {
                     throw new Error("Parenthesis mismatch");
                 }
@@ -713,15 +790,15 @@ class FormularParser {
      * @param tokens - An array of tokens to check.
      * @throws {Error} Throws an error if there is an operator syntax error.
      */
-    checkOperatorSynthax(tokens) {
+    checkOperatorSyntax(tokens) {
         const regex = /[+-\/*]{2,}/;
         const expression = tokens.join("");
         if (regex.test(expression)) {
             throw new Error("Incorrect Operator error");
         }
-        const validOperationCheckerRegex = />=|<=|==|!=|&&|\|\||[+-\/*<>][\w\(]/;
+        const validOperationCheckerRegex = />=|<=|==|!=|&&|\|\||[+-\/*<>\^][\w\(]/;
         if (!validOperationCheckerRegex.test(expression)) {
-            throw new Error("Incorrect Operator position for Operande");
+            throw new Error("Incorrect Operator position for Operand");
         }
     }
     /**
@@ -729,13 +806,13 @@ class FormularParser {
      * @param tokens - An array of tokens to check.
      * @throws {Error} Throws an error if there is a ternary syntax error.
      */
-    checkTernaryConditionSynthax(tokens) {
+    checkTernaryConditionSyntax(tokens) {
         let ternaryQuestionMarkCount = 0;
         let ternaryColonCount = 0;
         tokens.forEach((token) => {
-            if (token === "?")
+            if (token === constant_1.QuestionMarkOperator)
                 ternaryQuestionMarkCount++;
-            if (token === ":")
+            if (token === constant_1.ColonOperator)
                 ternaryColonCount++;
         });
         if (ternaryQuestionMarkCount !== ternaryColonCount) {
@@ -745,7 +822,7 @@ class FormularParser {
         let expectingCondition = true;
         tokens.forEach((token) => {
             if (ternaryRegex.test(String(token))) {
-                if (expectingCondition && token === ":") {
+                if (expectingCondition && token === constant_1.ColonOperator) {
                     throw new Error("Ternary syntax error: found ':' before '?'");
                 }
                 expectingCondition = !expectingCondition;
@@ -760,11 +837,11 @@ class FormularParser {
      */
     execute(tokens) {
         if (this.isFormular(tokens)) {
-            this.checkSynthax(tokens);
+            this.checkSyntax(tokens);
             return this.parser(tokens);
         }
         else {
-            throw new Error("is not formular");
+            throw new Error("[Error]: Not formular");
         }
     }
     /**
@@ -774,6 +851,7 @@ class FormularParser {
      */
     parser(tokens) {
         const postFixExpression = this.infixToPostFix(tokens);
+        console.log("PostFix", postFixExpression);
         const result = this.generateAST(postFixExpression);
         return result;
     }
@@ -796,16 +874,16 @@ class FormularParser {
      */
     _generateAST(tokens, index, stack = []) {
         const token = tokens[index];
-        if (!token)
+        if (token == undefined)
             return stack[0];
-        if (this.isOperatorFirstAndParenthesix(token)) {
+        if (this.isOperatorFirstAndParenthesis(token)) {
             const node = new AstNode();
             node.operator = token;
             if (this.isArithmeticOperator(token)) {
                 node.right = stack.pop();
                 node.left = stack.pop();
             }
-            else if (this.isComparaisonOperator(token)) {
+            else if (this.isComparisonOperator(token)) {
                 node.right = stack.pop();
                 node.left = stack.pop();
             }
@@ -837,36 +915,40 @@ class FormularParser {
         const output = [];
         const operators = [];
         tokens.forEach((token) => {
-            if (!this.isOperatorFirstAndParenthesix(token)) {
+            if (!this.isOperatorFirstAndParenthesis(token)) {
                 output.push(token);
             }
             else {
-                const operatorAndParentesix = String(token);
-                const priority = this.priority(operatorAndParentesix);
-                if (operatorAndParentesix === "(") {
-                    operators.push(operatorAndParentesix);
+                const operatorAndParenthesis = String(token);
+                const priority = this.priority(operatorAndParenthesis);
+                if (operatorAndParenthesis === constant_1.ParenthesisOpenOperator) {
+                    operators.push(operatorAndParenthesis);
                 }
-                else if (operatorAndParentesix === ")") {
-                    while (operators.length > 0 && operators[operators.length - 1] !== "(") {
+                else if (operatorAndParenthesis === constant_1.ParenthesisCloseOperator) {
+                    while (operators.length > 0 &&
+                        operators[operators.length - 1] !== constant_1.ParenthesisOpenOperator) {
                         const operator = operators.pop();
-                        if (!(operator.trim() === "(")) {
+                        if (!(operator.trim() === constant_1.ParenthesisOpenOperator)) {
                             output.push(operator);
                         }
                     }
                     operators.pop();
                 }
-                else if (operatorAndParentesix === ":") {
-                    while (operators.length > 0 && operators[operators.length - 1] !== "?") {
+                else if (operatorAndParenthesis === constant_1.ColonOperator) {
+                    while (operators.length > 0 &&
+                        operators[operators.length - 1] !== constant_1.QuestionMarkOperator) {
                         output.push(operators.pop());
                     }
                 }
-                else if (["+", "-", "/", "*", ">", "||", "<", "&&", ">=", "<=", "==", "!=", "?"].includes(operatorAndParentesix)) {
-                    while (operators.length > 0 && this.priority(operators[operators.length - 1]) >= priority) {
+                else if (constant_1.Operators.includes(operatorAndParenthesis)) {
+                    while (operators.length > 0 &&
+                        this.priority(operators[operators.length - 1]) >= priority) {
                         output.push(operators.pop());
                     }
-                    operators.push(operatorAndParentesix);
+                    operators.push(operatorAndParenthesis);
                 }
                 else {
+                    console.log("enter here", operatorAndParenthesis, token);
                 }
             }
         });
@@ -887,12 +969,14 @@ class FormularParser {
      * @returns {number} The priority level of the operator, where higher numbers indicate higher priority.
      */
     priority(operator) {
-        if (["+", "-"].includes(operator))
+        if (constant_1.Priority_1_Operator.includes(operator))
             return 1;
-        if (["/", "*"].includes(operator))
+        if (constant_1.Priority_2_Operator.includes(operator))
             return 2;
-        if ([">", "||", "<", "&&", ">=", "<=", "==", "!=", "?"].includes(operator))
+        if (constant_1.Priority_3_Operator.includes(operator))
             return 3;
+        if (constant_1.Priority_4_Operator.includes(operator))
+            return 4;
         return 0;
     }
     /**
@@ -908,21 +992,21 @@ class FormularParser {
      * @param token - The token to evaluate.
      * @returns  {boolean} -True if the token is an operator or parenthesis; otherwise, false.
      */
-    isOperatorFirstAndParenthesix(token) {
-        if (["+", "-", "/", "*", ">", "||", "<", "&&", ">=", "<=", "==", "!=", "?", ":", "(", ")"].includes(String(token).trim()))
+    isOperatorFirstAndParenthesis(token) {
+        if (constant_1.AllOperators.includes(String(token).trim()))
             return true;
         return false;
     }
     /**
      * Checks if the provided token is an arithmetic operator.
      *
-     * The valid arithmetic operators are: +, -, *, /
+     * The valid arithmetic operators are: +, -, *, /,^
      *
      * @param token - The token to evaluate.
      * @returns {boolean} -True if the token is an arithmetic operator; otherwise, false.
      */
     isArithmeticOperator(token) {
-        if (["+", "-", "/", "*"].includes(token))
+        if (constant_1.ArithmeticOperator.includes(token))
             return true;
         return false;
     }
@@ -934,8 +1018,8 @@ class FormularParser {
      * @param token - The token to evaluate.
      * @returns {boolean} -  True if the token is a comparison operator; otherwise, false.
      */
-    isComparaisonOperator(token) {
-        if ([">", "||", "<", "&&", ">=", "<=", "==", "!="].includes(token))
+    isComparisonOperator(token) {
+        if (constant_1.ComparisonOperator.includes(token))
             return true;
         return false;
     }
@@ -948,9 +1032,7 @@ class FormularParser {
      * @returns {boolean} - True if the token is a ternary operator; otherwise, false.
      */
     isTernaryOperator(token) {
-        if (["?"].includes(token))
-            return true;
-        return false;
+        return constant_1.QuestionMarkOperator === token;
     }
     /**
      * Checks if the provided token is a valid value.
@@ -970,33 +1052,32 @@ exports.FormularParser = FormularParser;
 
 /***/ }),
 
-/***/ "./tokeniser/FormularTokeniser.ts":
+/***/ "./tokenizer/FormularTokenizer.ts":
 /*!****************************************!*\
-  !*** ./tokeniser/FormularTokeniser.ts ***!
+  !*** ./tokenizer/FormularTokenizer.ts ***!
   \****************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.FormularTokeniser = void 0;
+exports.FormularTokenizer = void 0;
 const constant_1 = __webpack_require__(/*! ../constant */ "./constant.ts");
 /**
- * The FormularTokeniser class is responsible for tokenizing and formatting
+ * The FormularTokenizer class is responsible for tokenizing and formatting
  * mathematical expressions for further evaluation. It handles the input
  * string by formatting it, filtering tokens, and preparing them for processing.
  */
-class FormularTokeniser {
+class FormularTokenizer {
     /**
      * Formats the input string by replacing operators and trimming whitespace.
      * @param {string} input The input string to be formatted.
      * @returns {string} The formatted expression.
      */
     formatInput(input) {
-        const formatedExpression = input
+        return input
             .replace(constant_1.REGEX.formularOperatorG, " $1 ")
             .replace(/\s+/g, " ")
             .trim();
-        return formatedExpression;
     }
     /**
      * Filters the tokens to handle numbers and operators appropriately.
@@ -1007,26 +1088,28 @@ class FormularTokeniser {
      */
     filterTokens(tokens) {
         const filteredTokens = [];
-        let expectedClosedParenthesix = false;
+        let expectedClosedParenthesis = false;
         tokens.forEach((token) => {
+            console.log(token);
             const regex = /^\d+(\.\d+)?$/;
             const negativeNumberRegex = /-\d+/;
             const lastFilteredToken = filteredTokens[filteredTokens.length - 1];
             if (regex.test(token)) {
                 const firstPop = filteredTokens.pop();
                 const secondPop = filteredTokens.pop();
-                if (firstPop && secondPop) {
-                    if (["+", "-"].includes(firstPop) && secondPop === "(") {
+                if (firstPop != undefined && secondPop != undefined) {
+                    if (constant_1.Priority_1_Operator.includes(firstPop) &&
+                        secondPop === constant_1.ParenthesisOpenOperator) {
                         filteredTokens.push(Number(firstPop + token));
-                        expectedClosedParenthesix = true;
+                        expectedClosedParenthesis = true;
                     }
                     else {
                         filteredTokens.push(secondPop, firstPop, Number(token));
                     }
                 }
                 else {
-                    if (!secondPop) {
-                        if (firstPop) {
+                    if (secondPop == undefined) {
+                        if (firstPop != undefined) {
                             filteredTokens.push(firstPop, Number(token));
                         }
                         else {
@@ -1039,9 +1122,9 @@ class FormularTokeniser {
                 }
             }
             else if (negativeNumberRegex.test(lastFilteredToken) &&
-                token === ")" &&
-                expectedClosedParenthesix) {
-                expectedClosedParenthesix = false;
+                token === constant_1.ParenthesisCloseOperator &&
+                expectedClosedParenthesis) {
+                expectedClosedParenthesis = false;
             }
             else {
                 filteredTokens.push(token);
@@ -1057,13 +1140,13 @@ class FormularTokeniser {
      * @returns {any[]} The array of filtered tokens resulting from the tokenization process.
      */
     execute(input) {
-        const formatedInput = this.formatInput(input);
-        const tokens = formatedInput.split(" ");
+        const formattedInput = this.formatInput(input);
+        const tokens = formattedInput.split(" ");
         const filteredTokens = this.filterTokens(tokens);
         return filteredTokens;
     }
 }
-exports.FormularTokeniser = FormularTokeniser;
+exports.FormularTokenizer = FormularTokenizer;
 
 
 /***/ })

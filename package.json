@@ -1,5 +1,5 @@
 {
-  "name": "ruleinterpreter",
+  "name": "ruleinterpretor",
   "version": "1.0.0",
   "description": "\"Le Ruleinterpretor est un module du projet nutrixnap charger de gerer l'interpretation des regles entrer par le nutritionniste\"",
   "main": "./dist/index.js",

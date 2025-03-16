@@ -7,7 +7,7 @@ import { ConditionalExpression } from "./ConditionalExpression";
 export class ExpressionConstructor {
   /**
    * Creates a literal value expression.
-   * 
+   *
    * @template T The input type of the expression.
    * @template R The output type of the literal value.
    * @param {R} value The value to be represented as a literal.
@@ -19,7 +19,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a field reference expression based on the provided field name.
-   * 
+   *
    * @template T The type of the input object.
    * @template R The type of the output value from the field.
    * @param {string} fieldName The name of the field to reference.
@@ -33,7 +33,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates an addition operation expression between two expressions.
-   * 
+   *
    * @template T The type of the input expressions.
    * @param {Expression<T, number>} left The left operand.
    * @param {Expression<T, number>} right The right operand.
@@ -48,13 +48,13 @@ export class ExpressionConstructor {
 
   /**
    * Creates a subtraction operation expression between two expressions.
-   * 
+   *
    * @template T The type of the input expressions.
    * @param {Expression<T, number>} left The left operand.
    * @param {Expression<T, number>} right The right operand.
    * @returns {Expression<T, number>} The subtraction expression.
    */
-  static substration<T>(
+  static subtraction<T>(
     left: Expression<T, number>,
     right: Expression<T, number>
   ): Expression<T, number> {
@@ -63,7 +63,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a multiplication operation expression between two expressions.
-   * 
+   *
    * @template T The type of the input expressions.
    * @param {Expression<T, number>} left The left operand.
    * @param {Expression<T, number>} right The right operand.
@@ -78,7 +78,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a division operation expression between two expressions.
-   * 
+   *
    * @template T The type of the input expressions.
    * @param {Expression<T, number>} left The left operand.
    * @param {Expression<T, number>} right The right operand.
@@ -97,7 +97,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a conditional expression based on the specified condition.
-   * 
+   *
    * @template T The input type of the expression.
    * @template R The output type of the conditional expression.
    * @param {Expression<T, number>} condition The expression that determines the condition to evaluate.
@@ -115,7 +115,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates an equality expression comparing two expressions.
-   * 
+   *
    * @template T The input type of the expressions.
    * @template R The output type of the expressions.
    * @param {Expression<T, R>} left The left operand.
@@ -133,7 +133,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a greater-than expression comparing two expressions.
-   * 
+   *
    * @template T The input type of the expressions.
    * @template R The output type of the expressions.
    * @param {Expression<T, R>} left The left operand.
@@ -151,7 +151,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a less-than expression comparing two expressions.
-   * 
+   *
    * @template T The input type of the expressions.
    * @template R The output type of the expressions.
    * @param {Expression<T, R>} left The left operand.
@@ -169,7 +169,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a not-equal expression comparing two expressions.
-   * 
+   *
    * @template T The input type of the expressions.
    * @template R The output type of the expressions.
    * @param {Expression<T, R>} left The left operand.
@@ -187,7 +187,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a logical OR expression between two expressions.
-   * 
+   *
    * @template T The input type of the expressions.
    * @template R The output type of the expressions.
    * @param {Expression<T, R>} left The left operand.
@@ -205,7 +205,7 @@ export class ExpressionConstructor {
 
   /**
    * Creates a logical AND expression between two expressions.
-   * 
+   *
    * @template T The input type of the expressions.
    * @template R The output type of the expressions.
    * @param {Expression<T, R>} left The left operand.
@@ -218,6 +218,22 @@ export class ExpressionConstructor {
   ): Expression<T, number> {
     return new BinaryOperation<T, R>(left, right, (a: R, b: R) =>
       Number(a && b)
+    );
+  }
+    /**
+   * Creates a power (exponentiation) expression between two expressions.
+   *
+   * @template T The input type of the expressions.
+   * @param {Expression<T, number>} base The base operand.
+   * @param {Expression<T, number>} exponent The exponent operand.
+   * @returns {Expression<T, number>} The result of raising `base` to the power of `right`.
+   */
+  static pow<T>(
+    left: Expression<T, number>,
+    right: Expression<T, number>
+  ): Expression<T, number> {
+    return new BinaryOperation<T, number>(left, right, (a: number, b: number) =>
+      Math.pow(Number(a), Number(b))
     );
   }
 }

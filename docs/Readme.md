@@ -19,7 +19,7 @@
     *   [Parameters][15]
 *   [addition][16]
     *   [Parameters][17]
-*   [substration][18]
+*   [subtraction][18]
     *   [Parameters][19]
 *   [multiplication][20]
     *   [Parameters][21]
@@ -39,42 +39,44 @@
     *   [Parameters][35]
 *   [and][36]
     *   [Parameters][37]
-*   [FieldReference][38]
+*   [pow][38]
     *   [Parameters][39]
-    *   [execute][40]
-        *   [Parameters][41]
-*   [LiteralValue][42]
-    *   [Parameters][43]
-    *   [execute][44]
-        *   [Parameters][45]
-*   [FormularInterpreter][46]
-    *   [execute][47]
-        *   [Parameters][48]
-    *   [interprete][49]
+*   [FieldReference][40]
+    *   [Parameters][41]
+    *   [execute][42]
+        *   [Parameters][43]
+*   [LiteralValue][44]
+    *   [Parameters][45]
+    *   [execute][46]
+        *   [Parameters][47]
+*   [FormularInterpreter][48]
+    *   [execute][49]
         *   [Parameters][50]
-*   [Operator][51]
-*   [Node][52]
-    *   [isConditional][53]
-    *   [isValue][54]
-    *   [isComparaison][55]
-    *   [isField][56]
-    *   [isNode][57]
-*   [AstNode][58]
-    *   [isConditional][59]
-    *   [isValue][60]
-    *   [isComparaison][61]
-    *   [isField][62]
-    *   [isNode][63]
-*   [FormularParser][64]
-    *   [execute][65]
-        *   [Parameters][66]
-*   [FormularTokeniser][67]
-    *   [formatInput][68]
-        *   [Parameters][69]
-    *   [filterTokens][70]
+    *   [interpret][51]
+        *   [Parameters][52]
+*   [Operator][53]
+*   [Node][54]
+    *   [isConditional][55]
+    *   [isValue][56]
+    *   [isComparison][57]
+    *   [isField][58]
+    *   [isNode][59]
+*   [AstNode][60]
+    *   [isConditional][61]
+    *   [isValue][62]
+    *   [isComparison][63]
+    *   [isField][64]
+    *   [isNode][65]
+*   [FormularParser][66]
+    *   [execute][67]
+        *   [Parameters][68]
+*   [FormularTokenizer][69]
+    *   [formatInput][70]
         *   [Parameters][71]
-    *   [execute][72]
+    *   [filterTokens][72]
         *   [Parameters][73]
+    *   [execute][74]
+        *   [Parameters][75]
 
 ## BinaryOperation
 
@@ -98,7 +100,7 @@ Executes the binary operation on the given object.
 
 *   `obj` **T** The object on which the operation will be executed.
 
-Returns **[number][74]** The result of the binary operation.
+Returns **[number][76]** The result of the binary operation.
 
 ## ConditionalExpression
 
@@ -111,7 +113,7 @@ Represents a conditional expression that returns values based on a condition.
 *   `` &#x20;
 *   `` &#x20;
 *   `` &#x20;
-*   `condition` **[Expression][9]\<T, [number][74]>** The expression that determines the condition to evaluate.
+*   `condition` **[Expression][9]\<T, [number][76]>** The expression that determines the condition to evaluate.
 *   `isTrue` **[Expression][9]\<T, R>** The expression to execute if the condition is true.
 *   `isFalse` **[Expression][9]\<T, R>** The expression to execute if the condition is false.
 
@@ -155,7 +157,7 @@ Creates a field reference expression based on the provided field name.
 
 ### Parameters
 
-*   `fieldName` **[string][75]** The name of the field to reference.
+*   `fieldName` **[string][77]** The name of the field to reference.
 
 Returns **[Expression][9]\<T, R>** The field reference expression.
 
@@ -165,21 +167,21 @@ Creates an addition operation expression between two expressions.
 
 ### Parameters
 
-*   `left` **[Expression][9]\<T, [number][74]>** The left operand.
-*   `right` **[Expression][9]\<T, [number][74]>** The right operand.
+*   `left` **[Expression][9]\<T, [number][76]>** The left operand.
+*   `right` **[Expression][9]\<T, [number][76]>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The addition expression.
+Returns **[Expression][9]\<T, [number][76]>** The addition expression.
 
-## substration
+## subtraction
 
 Creates a subtraction operation expression between two expressions.
 
 ### Parameters
 
-*   `left` **[Expression][9]\<T, [number][74]>** The left operand.
-*   `right` **[Expression][9]\<T, [number][74]>** The right operand.
+*   `left` **[Expression][9]\<T, [number][76]>** The left operand.
+*   `right` **[Expression][9]\<T, [number][76]>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The subtraction expression.
+Returns **[Expression][9]\<T, [number][76]>** The subtraction expression.
 
 ## multiplication
 
@@ -187,10 +189,10 @@ Creates a multiplication operation expression between two expressions.
 
 ### Parameters
 
-*   `left` **[Expression][9]\<T, [number][74]>** The left operand.
-*   `right` **[Expression][9]\<T, [number][74]>** The right operand.
+*   `left` **[Expression][9]\<T, [number][76]>** The left operand.
+*   `right` **[Expression][9]\<T, [number][76]>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The multiplication expression.
+Returns **[Expression][9]\<T, [number][76]>** The multiplication expression.
 
 ## division
 
@@ -198,14 +200,14 @@ Creates a division operation expression between two expressions.
 
 ### Parameters
 
-*   `left` **[Expression][9]\<T, [number][74]>** The left operand.
-*   `right` **[Expression][9]\<T, [number][74]>** The right operand.
+*   `left` **[Expression][9]\<T, [number][76]>** The left operand.
+*   `right` **[Expression][9]\<T, [number][76]>** The right operand.
 
 <!---->
 
-*   Throws **[Error][76]** Throws an error if division by zero is attempted.
+*   Throws **[Error][78]** Throws an error if division by zero is attempted.
 
-Returns **[Expression][9]\<T, [number][74]>** The division expression.
+Returns **[Expression][9]\<T, [number][76]>** The division expression.
 
 ## condition
 
@@ -213,7 +215,7 @@ Creates a conditional expression based on the specified condition.
 
 ### Parameters
 
-*   `condition` **[Expression][9]\<T, [number][74]>** The expression that determines the condition to evaluate.
+*   `condition` **[Expression][9]\<T, [number][76]>** The expression that determines the condition to evaluate.
 *   `isTrue` **[Expression][9]\<T, R>** The expression to execute if the condition is true.
 *   `isFalse` **[Expression][9]\<T, R>** The expression to execute if the condition is false.
 
@@ -228,7 +230,7 @@ Creates an equality expression comparing two expressions.
 *   `left` **[Expression][9]\<T, R>** The left operand.
 *   `right` **[Expression][9]\<T, R>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The equality expression.
+Returns **[Expression][9]\<T, [number][76]>** The equality expression.
 
 ## superior
 
@@ -239,7 +241,7 @@ Creates a greater-than expression comparing two expressions.
 *   `left` **[Expression][9]\<T, R>** The left operand.
 *   `right` **[Expression][9]\<T, R>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The greater-than expression.
+Returns **[Expression][9]\<T, [number][76]>** The greater-than expression.
 
 ## inferior
 
@@ -250,7 +252,7 @@ Creates a less-than expression comparing two expressions.
 *   `left` **[Expression][9]\<T, R>** The left operand.
 *   `right` **[Expression][9]\<T, R>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The less-than expression.
+Returns **[Expression][9]\<T, [number][76]>** The less-than expression.
 
 ## different
 
@@ -261,7 +263,7 @@ Creates a not-equal expression comparing two expressions.
 *   `left` **[Expression][9]\<T, R>** The left operand.
 *   `right` **[Expression][9]\<T, R>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The not-equal expression.
+Returns **[Expression][9]\<T, [number][76]>** The not-equal expression.
 
 ## or
 
@@ -272,7 +274,7 @@ Creates a logical OR expression between two expressions.
 *   `left` **[Expression][9]\<T, R>** The left operand.
 *   `right` **[Expression][9]\<T, R>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The logical OR expression.
+Returns **[Expression][9]\<T, [number][76]>** The logical OR expression.
 
 ## and
 
@@ -283,7 +285,20 @@ Creates a logical AND expression between two expressions.
 *   `left` **[Expression][9]\<T, R>** The left operand.
 *   `right` **[Expression][9]\<T, R>** The right operand.
 
-Returns **[Expression][9]\<T, [number][74]>** The logical AND expression.
+Returns **[Expression][9]\<T, [number][76]>** The logical AND expression.
+
+## pow
+
+Creates a power (exponentiation) expression between two expressions.
+
+### Parameters
+
+*   `left` **[Expression][9]\<T, [number][76]>**&#x20;
+*   `right` **[Expression][9]\<T, [number][76]>**&#x20;
+*   `base` **[Expression][9]\<T, [number][76]>** The base operand.
+*   `exponent` **[Expression][9]\<T, [number][76]>** The exponent operand.
+
+Returns **[Expression][9]\<T, [number][76]>** The result of raising `base` to the power of `right`.
 
 ## FieldReference
 
@@ -295,7 +310,7 @@ for the execution of expressions and the interpretation of formulas.
 ### Parameters
 
 *   `` &#x20;
-*   `fieldName` **[string][75]** The name of the field to reference in the object.
+*   `fieldName` **[string][77]** The name of the field to reference in the object.
 
 ### execute
 
@@ -307,7 +322,7 @@ Executes the field reference on the given object.
 
 <!---->
 
-*   Throws **[Error][76]** If the field does not exist or is undefined in the object.
+*   Throws **[Error][78]** If the field does not exist or is undefined in the object.
 
 Returns **R** The value of the referenced field.
 
@@ -344,27 +359,27 @@ Executes the interpretation of the AST tree and returns the evaluated result.
 
 #### Parameters
 
-*   `astTree` **[Node][52]** The abstract syntax tree to be interpreted.
+*   `astTree` **[Node][54]** The abstract syntax tree to be interpreted.
 *   `data` **T** The variable data to use for evaluation.
 
-Returns **([number][74] | [string][75])** The result of the expression evaluation.
+Returns **([number][76] | [string][77])** The result of the expression evaluation.
 
-### interprete
+### interpret
 
 Interprets the AST tree recursively and constructs expression objects based on the node types.
 
 #### Parameters
 
-*   `astTree` **[Node][52]** The abstract syntax tree to interpret.
+*   `astTree` **[Node][54]** The abstract syntax tree to interpret.
 *   `data` **T** The variable data to use for evaluation.
 
-Returns **[Expression][9]\<T, ([string][75] | [number][74])>** The constructed expression object.
+Returns **[Expression][9]\<T, ([string][77] | [number][76])>** The constructed expression object.
 
 ## Operator
 
 Represents the supported operators in the expression.
 
-Type: (`"+"` | `"-"` | `"/"` | `"*"` | `">"` | `"||"` | `"<"` | `"&&"` | `">="` | `"<="` | `"=="` | `"!="`)
+Type: any
 
 ## Node
 
@@ -374,31 +389,31 @@ Defines the structure of a Node in the Abstract Syntax Tree (AST).
 
 Checks if the node is conditional.
 
-Returns **[boolean][77]** True if the node is conditional; otherwise, false.
+Returns **[boolean][79]** True if the node is conditional; otherwise, false.
 
 ### isValue
 
 Checks if the node represents a value.
 
-Returns **[boolean][77]** True if the node is a value; otherwise, false.
+Returns **[boolean][79]** True if the node is a value; otherwise, false.
 
-### isComparaison
+### isComparison
 
 Checks if the node is a comparison operator.
 
-Returns **[boolean][77]** True if the node is a comparison; otherwise, false.
+Returns **[boolean][79]** True if the node is a comparison; otherwise, false.
 
 ### isField
 
 Checks if the node is a field.
 
-Returns **[boolean][77]** True if the node is a field; otherwise, false.
+Returns **[boolean][79]** True if the node is a field; otherwise, false.
 
 ### isNode
 
 Checks if the node is a generic node.
 
-Returns **[boolean][77]** True if the node is a node; otherwise, false.
+Returns **[boolean][79]** True if the node is a node; otherwise, false.
 
 ## AstNode
 
@@ -408,31 +423,31 @@ Represents a node in the Abstract Syntax Tree (AST).
 
 Determines if this node is conditional.
 
-Returns **[boolean][77]** True if the node is conditional; otherwise, false.
+Returns **[boolean][79]** True if the node is conditional; otherwise, false.
 
 ### isValue
 
 Determines if this node represents a value.
 
-Returns **[boolean][77]** True if the node is a value; otherwise, false.
+Returns **[boolean][79]** True if the node is a value; otherwise, false.
 
-### isComparaison
+### isComparison
 
 Determines if this node is a comparison operator.
 
-Returns **[boolean][77]** True if the node is a comparison; otherwise, false.
+Returns **[boolean][79]** True if the node is a comparison; otherwise, false.
 
 ### isField
 
 Determines if this node is a field.
 
-Returns **[boolean][77]** True if the node is a field; otherwise, false.
+Returns **[boolean][79]** True if the node is a field; otherwise, false.
 
 ### isNode
 
 Determines if this node is a generic node.
 
-Returns **[boolean][77]** True if the node is a node; otherwise, false.
+Returns **[boolean][79]** True if the node is a node; otherwise, false.
 
 ## FormularParser
 
@@ -444,17 +459,17 @@ Executes the parsing of the provided tokens and generates an AST.
 
 #### Parameters
 
-*   `tokens` **[Array][78]<([string][75] | [number][74])>** An array of tokens to parse.
+*   `tokens` **[Array][80]<([string][77] | [number][76])>** An array of tokens to parse.
 
 <!---->
 
-*   Throws **[Error][76]** Throws an error if the tokens are not a valid formula.
+*   Throws **[Error][78]** Throws an error if the tokens are not a valid formula.
 
-Returns **[Node][52]** The root node of the generated AST.
+Returns **[Node][54]** The root node of the generated AST.
 
-## FormularTokeniser
+## FormularTokenizer
 
-The FormularTokeniser class is responsible for tokenizing and formatting
+The FormularTokenizer class is responsible for tokenizing and formatting
 mathematical expressions for further evaluation. It handles the input
 string by formatting it, filtering tokens, and preparing them for processing.
 
@@ -464,9 +479,9 @@ Formats the input string by replacing operators and trimming whitespace.
 
 #### Parameters
 
-*   `input` **[string][75]** The input string to be formatted.
+*   `input` **[string][77]** The input string to be formatted.
 
-Returns **[string][75]** The formatted expression.
+Returns **[string][77]** The formatted expression.
 
 ### filterTokens
 
@@ -476,9 +491,9 @@ are in the correct format for evaluation.
 
 #### Parameters
 
-*   `tokens` **[Array][78]<[string][75]>** The array of tokens to be filtered.
+*   `tokens` **[Array][80]<[string][77]>** The array of tokens to be filtered.
 
-Returns **[Array][78]<([string][75] | [number][74])>** The filtered tokens as an array of strings and numbers.
+Returns **[Array][80]<([string][77] | [number][76])>** The filtered tokens as an array of strings and numbers.
 
 ### execute
 
@@ -488,9 +503,9 @@ and filters the tokens to produce a final result.
 
 #### Parameters
 
-*   `input` **[string][75]** The input string to be tokenized.
+*   `input` **[string][77]** The input string to be tokenized.
 
-Returns **[Array][78]\<any>** The array of filtered tokens resulting from the tokenization process.
+Returns **[Array][80]\<any>** The array of filtered tokens resulting from the tokenization process.
 
 [1]: #binaryoperation
 
@@ -526,7 +541,7 @@ Returns **[Array][78]\<any>** The array of filtered tokens resulting from the to
 
 [17]: #parameters-7
 
-[18]: #substration
+[18]: #subtraction
 
 [19]: #parameters-8
 
@@ -566,84 +581,88 @@ Returns **[Array][78]\<any>** The array of filtered tokens resulting from the to
 
 [37]: #parameters-17
 
-[38]: #fieldreference-1
+[38]: #pow
 
 [39]: #parameters-18
 
-[40]: #execute-3
+[40]: #fieldreference-1
 
 [41]: #parameters-19
 
-[42]: #literalvalue-1
+[42]: #execute-3
 
 [43]: #parameters-20
 
-[44]: #execute-4
+[44]: #literalvalue-1
 
 [45]: #parameters-21
 
-[46]: #formularinterpreter
+[46]: #execute-4
 
-[47]: #execute-5
+[47]: #parameters-22
 
-[48]: #parameters-22
+[48]: #formularinterpreter
 
-[49]: #interprete
+[49]: #execute-5
 
 [50]: #parameters-23
 
-[51]: #operator
+[51]: #interpret
 
-[52]: #node
+[52]: #parameters-24
 
-[53]: #isconditional
+[53]: #operator
 
-[54]: #isvalue
+[54]: #node
 
-[55]: #iscomparaison
+[55]: #isconditional
 
-[56]: #isfield
+[56]: #isvalue
 
-[57]: #isnode
+[57]: #iscomparison
 
-[58]: #astnode
+[58]: #isfield
 
-[59]: #isconditional-1
+[59]: #isnode
 
-[60]: #isvalue-1
+[60]: #astnode
 
-[61]: #iscomparaison-1
+[61]: #isconditional-1
 
-[62]: #isfield-1
+[62]: #isvalue-1
 
-[63]: #isnode-1
+[63]: #iscomparison-1
 
-[64]: #formularparser
+[64]: #isfield-1
 
-[65]: #execute-6
+[65]: #isnode-1
 
-[66]: #parameters-24
+[66]: #formularparser
 
-[67]: #formulartokeniser
+[67]: #execute-6
 
-[68]: #formatinput
+[68]: #parameters-25
 
-[69]: #parameters-25
+[69]: #formulartokenizer
 
-[70]: #filtertokens
+[70]: #formatinput
 
 [71]: #parameters-26
 
-[72]: #execute-7
+[72]: #filtertokens
 
 [73]: #parameters-27
 
-[74]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[74]: #execute-7
 
-[75]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[75]: #parameters-28
 
-[76]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[76]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[77]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[77]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[78]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[78]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+
+[79]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[80]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array

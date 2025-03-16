@@ -1,12 +1,27 @@
-import { AstNode, Node } from "./../parser/FormularParser";
+import { Node } from "./../parser/FormularParser";
 import { Expression } from "./../expression/Expression";
 import { ExpressionConstructor } from "./../expression/ExpressionConstructor";
+import {
+  AdditionOperator,
+  DivisionOperator,
+  EqualOperator,
+  ExponentialOperator,
+  GreaterThanOperator,
+  GreaterThanOrEqualOperator,
+  LessThanOperator,
+  LessThanOrEqualOperator,
+  LogicalAndOperator,
+  LogicalOrOperator,
+  MultiplicationOperator,
+  NotEqualOperator,
+  SubtractionOperator,
+} from "../constant";
 
 type VariableContainer = { [key: string]: string | number };
 
 /**
- * The FormularInterpreter class is responsible for interpreting an abstract syntax tree (AST) 
- * representing a mathematical or logical expression. It evaluates expressions based on provided 
+ * The FormularInterpreter class is responsible for interpreting an abstract syntax tree (AST)
+ * representing a mathematical or logical expression. It evaluates expressions based on provided
  * variable data and constructs appropriate expression objects for processing.
  */
 export class FormularInterpreter {
@@ -20,7 +35,7 @@ export class FormularInterpreter {
     astTree: Node,
     data: T
   ): number | string {
-    const result = this.interprete<T>(astTree, data).execute(data);
+    const result = this.interpret<T>(astTree, data).execute(data);
     return result;
   }
 
@@ -30,32 +45,37 @@ export class FormularInterpreter {
    * @param {T} data The variable data to use for evaluation.
    * @returns {Expression<T, string | number>} The constructed expression object.
    */
-  interprete<T extends VariableContainer>(
+  interpret<T extends VariableContainer>(
     astTree: Node,
     data: T
   ): Expression<T, string | number> {
     if (astTree.isNode()) {
       const operator = astTree.operator;
-      const right = this.interprete<T>(astTree.right!, data);
-      const left = this.interprete<T>(astTree.left!, data);
+      const right = this.interpret<T>(astTree.right!, data);
+      const left = this.interpret<T>(astTree.left!, data);
       switch (operator) {
-        case "+":
+        case AdditionOperator:
           return ExpressionConstructor.addition<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-        case "-":
-          return ExpressionConstructor.substration<T>(
+        case SubtractionOperator:
+          return ExpressionConstructor.subtraction<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-        case "*":
+        case MultiplicationOperator:
           return ExpressionConstructor.multiplication<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
-        case "/":
+        case DivisionOperator:
           return ExpressionConstructor.division<T>(
+            left as Expression<T, number>,
+            right as Expression<T, number>
+          );
+        case ExponentialOperator:
+          return ExpressionConstructor.pow<T>(
             left as Expression<T, number>,
             right as Expression<T, number>
           );
@@ -86,54 +106,54 @@ export class FormularInterpreter {
           astTree.fieldName!
         );
       }
-    } else if (astTree.isComparaison()) {
-      const comparaisonOperator = astTree.operator;
-      const left = this.interprete<T>(astTree.left!, data);
-      const right = this.interprete<T>(astTree.right!, data);
-      switch (comparaisonOperator) {
-        case ">":
+    } else if (astTree.isComparison()) {
+      const comparisonOperator = astTree.operator;
+      const left = this.interpret<T>(astTree.left!, data);
+      const right = this.interpret<T>(astTree.right!, data);
+      switch (comparisonOperator) {
+        case GreaterThanOperator:
           return ExpressionConstructor.superior<T, string | number>(
             left,
             right
           );
-        case "<":
+        case LessThanOperator:
           return ExpressionConstructor.inferior<T, string | number>(
             left,
             right
           );
-        case "==":
+        case EqualOperator:
           return ExpressionConstructor.equality<T, string | number>(
             left,
             right
           );
-        case ">=":
+        case GreaterThanOrEqualOperator:
           return ExpressionConstructor.or<T, string | number>(
             ExpressionConstructor.superior<T, string | number>(left, right),
             ExpressionConstructor.equality<T, string | number>(left, right)
           );
-        case "<=":
+        case LessThanOrEqualOperator:
           return ExpressionConstructor.or<T, string | number>(
             ExpressionConstructor.inferior<T, string | number>(left, right),
             ExpressionConstructor.equality<T, string | number>(left, right)
           );
-        case "||":
+        case LogicalOrOperator:
           return ExpressionConstructor.or<T, string | number>(left, right);
-        case "&&":
+        case LogicalAndOperator:
           return ExpressionConstructor.and<T, string | number>(left, right);
-        case "!=":
+        case NotEqualOperator:
           return ExpressionConstructor.different<T, string | number>(
             left,
             right
           );
         default:
           throw new Error(
-            `This comparaison ${comparaisonOperator} method is not supported`
+            `This comparison ${comparisonOperator} method is not supported`
           );
       }
     } else if (astTree.isConditional()) {
-      const condition = this.interprete<T>(astTree.condition!, data);
-      const isTrue = this.interprete<T>(astTree.isTrue!, data);
-      const isFalse = this.interprete<T>(astTree.isFalse!, data);
+      const condition = this.interpret<T>(astTree.condition!, data);
+      const isTrue = this.interpret<T>(astTree.isTrue!, data);
+      const isFalse = this.interpret<T>(astTree.isFalse!, data);
       return ExpressionConstructor.condition<T, string | number>(
         condition as Expression<T, number>,
         isTrue,

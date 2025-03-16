@@ -6,7 +6,7 @@ import { FieldReference } from "./expression/FieldReference";
 import { LiteralValue } from "./expression/LiteralValue";
 import { FormularInterpreter } from "./interpreter/FormularInterpreter";
 import { FormularParser, AstNode } from "./parser/FormularParser";
-import { FormularTokeniser } from "./tokeniser/FormularTokeniser";
+import { FormularTokenizer } from "./tokenizer/FormularTokenizer";
 import SmartCal from "./index"
 export  {
    BinaryOperation,
@@ -18,6 +18,6 @@ export  {
    FormularInterpreter,
    FormularParser,
    AstNode,
-   FormularTokeniser,
+   FormularTokenizer,
 };
 export default SmartCal

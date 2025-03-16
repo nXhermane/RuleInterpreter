@@ -1,3 +1,0 @@
-grammar NutriXnapDSL;
-
-program : ;
